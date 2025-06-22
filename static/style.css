@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+        --primary: #2563eb;
+        --primary-light: #3b82f6;
+        --primary-dark: #1d4ed8;
+        --secondary: #4f46e5;
+        --secondary-light: #6366f1;
+        --secondary-dark: #4338ca;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-accent: #e2e8f0;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --success: #10b981;
+        --error: #ef4444;
+        --border-radius: 0.5rem;
+        --transition: all 0.3s ease;
+    }
+
+    .dark {
+        --bg-primary: #1e293b;
+        --bg-secondary: #0f172a;
+        --bg-accent: #334155;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+    }
+}
+
+@layer components {
+
+    /* Enhanced Button System */
+    .btn {
+        @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2;
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50;
+        @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+
+    /* Button Variants */
+    .btn-primary {
+        @apply btn bg-gradient-to-r from-primary to-secondary text-white;
+        @apply hover:from-primary-dark hover:to-secondary-dark hover:scale-[1.02] active:scale-95;
+        @apply dark:focus:ring-primary/50;
+    }
+
+    .btn-secondary {
+        @apply btn bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300;
+        @apply border border-slate-300 dark:border-slate-600;
+        @apply hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-primary/30 dark:hover:border-primary/50;
+        @apply focus:ring-slate-300 dark:focus:ring-slate-600;
+    }
+
+    .btn-success {
+        @apply btn bg-gradient-to-r from-green-600 to-emerald-600 text-white;
+        @apply hover:from-green-700 hover:to-emerald-700 hover:scale-[1.02] active:scale-95;
+        @apply focus:ring-green-400/50 dark:focus:ring-green-400/50;
+    }
+
+    .btn-danger {
+        @apply btn bg-gradient-to-r from-red-600 to-rose-600 text-white;
+        @apply hover:from-red-700 hover:to-rose-700 hover:scale-[1.02] active:scale-95;
+        @apply focus:ring-rose-400/50 dark:focus:ring-rose-400/50;
+    }
+
+    .btn-outline {
+        @apply btn border-2 border-primary dark:border-primary-light text-primary dark:text-primary-light;
+        @apply hover:bg-primary/10 dark:hover:bg-primary/20 bg-transparent;
+        @apply focus:ring-primary/30 dark:focus:ring-primary/30;
+    }
+
+    .btn-ghost {
+        @apply btn bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 shadow-none;
+        @apply focus:ring-slate-300/50 dark:focus:ring-slate-600/50;
+    }
+
+    /* Button Sizes */
+    .btn-sm {
+        @apply px-4 py-2 text-sm;
+    }
+
+    .btn-lg {
+        @apply px-8 py-4 text-lg;
+    }
+
+    /* Button States */
+    .btn-loading {
+        @apply relative;
+    }
+
+    .btn-loading .btn-text {
+        @apply opacity-0;
+    }
+
+    .btn-loading .spinner {
+        @apply absolute inset-0 flex items-center justify-center;
+    }
+
+    /* Generator Specific Buttons */
+    .generate-btn {
+        @apply btn-primary;
+    }
+
+    .download-btn {
+        @apply btn-success w-full;
+    }
+
+    /* Spinner */
+    .spinner {
+        @apply hidden w-5 h-5 animate-spin;
+    }
+
+    .spinner svg {
+        @apply w-full h-full;
+    }
+
+    /* Tool Styles */
+    .tool {
+        @apply inline-block px-3 py-1 bg-primary/10 text-primary rounded-lg mr-2 mb-2;
+    }
+
+    /* Select Styles */
+    .styled-select {
+        @apply appearance-none bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-2 pr-8;
+        @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+    }
+
+    /* Navigation */
+    .nav-link {
+        @apply text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary-light font-medium transition-colors;
+    }
+
+    .nav-link.highlight {
+        @apply text-primary dark:text-primary-light px-4 py-2 rounded-lg bg-primary/10 dark:bg-primary/20;
+    }
+
+    /* Hero Section */
+    .hero-content {
+        @apply flex flex-col gap-6;
+    }
+
+    .hero-content h1 {
+        @apply text-6xl leading-tight gradient-text;
+    }
+
+    .hero-tagline {
+        @apply text-4xl font-semibold text-slate-900 dark:text-white;
+    }
+
+    .hero-subtitle {
+        @apply text-xl text-slate-600 dark:text-slate-300;
+    }
+
+    /* Sections */
+    .section {
+        @apply py-24;
+    }
+
+    .section-dark {
+        @apply bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-900;
+    }
+
+    /* Cards */
+    .card {
+        @apply bg-white dark:bg-slate-800 p-8 rounded-lg transition-all shadow-md hover:shadow-lg hover:-translate-y-1;
+    }
+
+    .card-hover {
+        @apply hover:-translate-y-1 hover:shadow-lg transition-transform duration-300;
+    }
+
+    /* Result Card */
+    .result-card {
+        @apply bg-white dark:bg-slate-800 p-8 rounded-lg shadow-md mt-8;
+    }
+
+    .result-card.hidden {
+        @apply hidden;
+    }
+
+    .project-title {
+        @apply text-2xl font-bold text-primary dark:text-primary-light mb-4;
+    }
+
+    .project-description {
+        @apply text-slate-600 dark:text-slate-300 mb-8;
+    }
+
+    /* File Structure */
+    .file-structure {
+        @apply bg-slate-100 dark:bg-slate-900 p-4 rounded-lg font-mono text-sm whitespace-pre-wrap;
+    }
+
+    /* Toast Base Styles */
+    /* Toast Container - matches your exact HTML */
+    #toast-container {
+        /* Your existing Tailwind classes handle positioning */
+    }
+
+    /* Base Toast Style */
+    #toast-container>div {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        background: white;
+        border: 1px solid #e2e8f0;
+        color: #1e293b;
+        animation: toastIn 0.3s ease-out;
+    }
+
+    /* Animation */
+    @keyframes toastIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* Toast Variants - simple color coding */
+    #toast-container>div.success {
+        background: #dcfce7;
+        border-color: #86efac;
+    }
+
+    #toast-container>div.error {
+        background: #fee2e2;
+        border-color: #fca5a5;
+    }
+
+    #toast-container>div.warning {
+        background: #fef3c7;
+        border-color: #fcd34d;
+    }
+
+    #toast-container>div.info {
+        background: #dbeafe;
+        border-color: #93c5fd;
+    }
+}
+
+/* Animations */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.slide-up {
+    @apply opacity-0 translate-y-6 transition-all duration-500 ease-out;
+}
+
+.slide-up.visible {
+    @apply opacity-100 translate-y-0;
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        @apply text-4xl;
+    }
+
+    .hero-tagline {
+        @apply text-2xl;
+    }
+
+    .controls {
+        @apply grid-cols-1;
+    }
+}

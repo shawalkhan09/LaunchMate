@@ -1,0 +1,12 @@
+{
+  "name": "launchmate",
+  "version": "1.0.0",
+  "description": "AI-powered project generator for students and developers",
+  "scripts": {
+    "build:css": "tailwindcss -i ./static/style.css -o ./static/output.css --minify",
+    "watch:css": "tailwindcss -i ./static/style.css -o ./static/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
