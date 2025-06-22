@@ -3,6 +3,8 @@ from flask import Flask, request, jsonify, render_template
 from app.generator import generate_project
 
 app = Flask(__name__)
+app.config["PROPAGATE_EXCEPTIONS"] = True
+
 
 @app.route("/")
 def index():
