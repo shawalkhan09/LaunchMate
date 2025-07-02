@@ -1,109 +1,80 @@
 # 🚀 LaunchMate – AI-Powered Project Idea Generator
 
-LaunchMate is a productivity tool that helps university students generate personalized project ideas based on their course and difficulty level. It leverages the Groq AI API to provide structured, meaningful, and implementable project suggestions.
+LaunchMate is a productivity tool that helps university students generate **practical, course-aligned project ideas** using AI. It now supports **user profiles, project history**, and a smarter, prompt-engineered system for **accurate project generation**.
 
 ---
 
 ## 🧠 How It Works
 
 1. Select your course and difficulty level
-2. Click "Generate Project"
-3. The Groq AI API generates a customized project idea
-4. Receive detailed project specifications including:
-   - Project title and description
-   - Required tools and technologies
-   - Suggested file structure
-   - Learning outcomes
-   - Build steps
-   - Bonus features
-   - Estimated completion time
-   - External resources
+2. Click **Generate Project**
+3. The Groq AI (LLaMA3-70B) generates a structured, implementable project idea
+4. Get a full project spec, including:
+   - 📌 Title & Description
+   - 🛠 Tools & Technologies
+   - 🗂 Suggested File Structure
+   - 📘 Learning Outcomes
+   - 🧱 Build Steps
+   - ✨ Bonus Feature
+   - ⏱ Estimated Completion Time
+   - 🔗 External Resources
+
+---
+
+## ✨ What's New in v1.1
+
+- ✅ **User Sign-in with Supabase Magic Link Auth**
+- ✅ **Database-backed project saving (Supabase)**
+- ✅ **Saved project history in user profile**
+- ✅ **Fully responsive UI for mobile and desktop**
+- ✅ **Copy to Clipboard** functionality for quick access
+- ✅ **Individualized Prompting for 14 Courses**
+- 🧠 Solved LLM hallucination issue through **course-specific prompts**
+- 📌 Published research-backed [LinkedIn article on Prompt Engineering](https://www.linkedin.com/in/your-link)
 
 ---
 
 ## 🖥️ Tech Stack
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Python, Flask
-- **AI Integration:** Groq API with llama3-70b-8192 model
-- **Data Storage:** Local file system for saved projects
-- **Environment:** Python virtual environment
+- **Frontend**: HTML, CSS, JavaScript (Vanilla)
+- **Backend**: Python, Flask
+- **AI Integration**: Groq API (LLaMA3-70B)
+- **Database**: Supabase (PostgreSQL + Auth)
+- **Hosting**: PythonAnywhere (for v1.0), [TBD for v1.1]
+- **Design System**: TailwindCSS-inspired styling
 
 ---
+
 
 ## 📁 Project Structure
 
 ```
 launchmate/
 ├── app/
-│   ├── __init__.py         # Package initialization
-│   ├── ai_generator.py     # Groq API integration
-│   ├── generator.py        # Project generation logic
-│   ├── exporter.py         # Project export functionality
-│   ├── templates.py        # Response templates
-│   └── utils.py           # Utility functions
+│   ├── generator.py         # Project generation logic
+│   ├── ai_generator.py      # Handles communication with Groq API
+│   ├── templates.py         # Course-specific prompt templates
+│   ├── utils.py             # Helper functions (e.g., fallback logic)
+│   ├── supabase_client.py   # Supabase DB and Auth integration
+│   ├── exporter.py          # Project README exporter (if used)
+│   └── main.py              # Entry point for backend logic (if separated)
+│
 ├── static/
-│   ├── style.css          # Frontend styling
-│   └── script.js          # Frontend interactions
+│   ├── style.css            # Tailwind-based styling
+│   └── script.js            # Frontend logic and interactions
+|   └── output.css  
+│
 ├── templates/
-│   └── index.html         # Main frontend page
-├── docs/                  # Project documentation
-├── saved_projects/        # Generated project files
-├── server.py             # Flask application
-├── requirements.txt      # Python dependencies
-└── README.md            # Project documentation
-```
-
----
-
-## ⚙️ Setup Instructions
-
-### 1. Prerequisites
-
-- Python 3.8 or higher
-- pip (Python package installer)
-- A Groq API key
-
-### 2. Environment Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/shawalkhan09/launchmate.git
-cd launchmate
-```
-
-2. Create and activate a virtual environment:
-```bash
-python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Linux/Mac
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Configuration
-
-1. Create a `.env` file in the project root:
-```bash
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-2. Replace `your_groq_api_key_here` with your actual Groq API key
-
-### 4. Running the Application
-
-1. Start the Flask server:
-```bash
-python server.py
-```
-
-2. Open your browser and navigate to:
-```
-http://localhost:5000
-```
+│   ├── index.html           # Homepage
+│   ├── profile.html         # User profile view
+│   ├── login.html           # Supabase Magic Link sign-in
+│   └── project.html         # Individual project detail view
+│
+├── fallback_projects.json   # JSON-based project backup if API fails
+├── server.py                # Flask server (main app entrypoint)
+├── .env                     # Environment variables (Groq + Supabase)
+├── requirements.txt         # Python dependencies
+└── README.md                # This documentation file
 
 ---
 

@@ -1,0 +1,802 @@
+{
+  "python:beginner": {
+    "title": "Expense Tracker CLI",
+    "description": "A simple command-line tool to help users log income and expenses, view summaries, and track monthly balances.",
+    "tools": ["python"],
+    "file_structure": ["main.py", "tracker.py", "data/transactions.txt"],
+    "bonus": "Add export to CSV",
+    "learning_outcomes": ["File I/O", "Functions", "Conditionals", "Looping"],
+    "build_steps": [
+      "Set up CLI with input prompts",
+      "Store entries in text file",
+      "Add summary function to compute totals",
+      "Handle input validation and edge cases"
+    ],
+    "estimated_time": "8–10 hours",
+    "external_resources": [
+      "https://realpython.com/python-basics/",
+      "https://docs.python.org/3/tutorial/inputoutput.html"
+    ]
+  },
+  "python:intermediate": {
+    "title": "File Organizer with GUI",
+    "description": "A desktop GUI application that helps users sort files into folders based on file types or extensions.",
+    "tools": ["python", "tkinter"],
+    "file_structure": ["main.py", "organizer.py", "ui/"],
+    "bonus": "Allow undo of last action",
+    "learning_outcomes": ["GUI design", "File operations", "Modular code"],
+    "build_steps": [
+      "Create GUI layout",
+      "Implement file scanning and sorting logic",
+      "Link actions to buttons",
+      "Handle errors and edge cases"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://tkdocs.com/tutorial/",
+      "https://realpython.com/working-with-files-in-python/"
+    ]
+  },
+  "python:advanced": {
+    "title": "Voice-Controlled To-Do List",
+    "description": "A Python app that uses speech recognition to add, remove, and list to-do tasks.",
+    "tools": ["python", "speechrecognition", "pyaudio"],
+    "file_structure": ["main.py", "speech_handler.py", "tasks.json"],
+    "bonus": "Integrate with Google Tasks API",
+    "learning_outcomes": ["Voice input", "JSON storage", "Modular architecture"],
+    "build_steps": [
+      "Set up speech recognition",
+      "Implement task handling logic",
+      "Store tasks in JSON",
+      "Handle invalid voice inputs gracefully"
+    ],
+    "estimated_time": "12–15 hours",
+    "external_resources": [
+      "https://realpython.com/python-speech-recognition/",
+      "https://pypi.org/project/SpeechRecognition/"
+    ]
+  },
+
+  "oop:beginner": {
+    "title": "Student Record Manager",
+    "description": "A console-based app to manage student records using classes to represent each entity.",
+    "tools": ["python"],
+    "file_structure": ["main.py", "student.py"],
+    "bonus": "Add sorting by GPA",
+    "learning_outcomes": ["OOP basics", "Encapsulation", "Data handling"],
+    "build_steps": [
+      "Create Student class with attributes",
+      "Implement add, remove, update functions",
+      "Display student list with sorting options"
+    ],
+    "estimated_time": "8–10 hours",
+    "external_resources": [
+      "https://realpython.com/python3-object-oriented-programming/"
+    ]
+  },
+  "oop:intermediate": {
+    "title": "Vehicle Rental System",
+    "description": "Simulate a vehicle rental process using inheritance and polymorphism.",
+    "tools": ["python"],
+    "file_structure": ["main.py", "vehicles/", "rental.py"],
+    "bonus": "Add price calculation with discounts",
+    "learning_outcomes": ["Inheritance", "Polymorphism", "System design"],
+    "build_steps": [
+      "Create base Vehicle class",
+      "Add Car and Bike subclasses",
+      "Implement rental functionality"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://www.geeksforgeeks.org/python-inheritance/"
+    ]
+  },
+  "oop:advanced": {
+    "title": "Inventory Management with GUI",
+    "description": "An advanced system managing inventory using OOP principles and GUI interface.",
+    "tools": ["python", "tkinter"],
+    "file_structure": ["main.py", "models/", "ui/"],
+    "bonus": "Add role-based access for admin and user",
+    "learning_outcomes": ["OOP design patterns", "GUI", "CRUD operations"],
+    "build_steps": [
+      "Design item and user classes",
+      "Build GUI",
+      "Implement CRUD and access control"
+    ],
+    "estimated_time": "15–20 hours",
+    "external_resources": [
+      "https://refactoring.guru/design-patterns/python",
+      "https://tkdocs.com/tutorial/widgets.html"
+    ]
+  },
+  "dbms:beginner": {
+    "title": "Student Database CLI",
+    "description": "A simple CLI-based project to manage student information using a SQLite database.",
+    "tools": ["python", "sqlite3"],
+    "file_structure": ["main.py", "db_helper.py", "students.db"],
+    "bonus": "Add export to CSV feature",
+    "learning_outcomes": ["Database schema creation", "SQL queries", "Database integration with Python"],
+    "build_steps": [
+      "Design student table schema",
+      "Create database and helper functions",
+      "Implement CRUD operations in CLI",
+      "Handle input validation"
+    ],
+    "estimated_time": "8–10 hours",
+    "external_resources": [
+      "https://docs.python.org/3/library/sqlite3.html",
+      "https://www.sqlitetutorial.net/"
+    ]
+  },
+  "dbms:intermediate": {
+    "title": "Library Management System",
+    "description": "A full CRUD web-based system using Flask and SQLite for managing a small library.",
+    "tools": ["python", "flask", "sqlite3"],
+    "file_structure": ["app.py", "templates/", "static/", "models.py"],
+    "bonus": "Add search filters and pagination",
+    "learning_outcomes": ["ORM usage", "Web + database integration", "Relational schema design"],
+    "build_steps": [
+      "Design book, member, and rental tables",
+      "Set up Flask routes and templates",
+      "Implement create, read, update, delete actions",
+      "Add UI for database interaction"
+    ],
+    "estimated_time": "12–16 hours",
+    "external_resources": [
+      "https://flask.palletsprojects.com/",
+      "https://www.sqlitetutorial.net/"
+    ]
+  },
+  "dbms:advanced": {
+    "title": "Inventory Dashboard with PostgreSQL",
+    "description": "A complex dashboard app for tracking inventory, using PostgreSQL and advanced queries.",
+    "tools": ["python", "dash", "postgresql"],
+    "file_structure": ["app.py", "db/", "queries.sql", "layout/"],
+    "bonus": "Role-based access control",
+    "learning_outcomes": ["Query optimization", "PostgreSQL features", "Real-time dashboard generation"],
+    "build_steps": [
+      "Design normalized inventory schema",
+      "Build PostgreSQL database",
+      "Create visual components using Dash",
+      "Link frontend with database"
+    ],
+    "estimated_time": "20–25 hours",
+    "external_resources": [
+      "https://www.postgresql.org/docs/",
+      "https://dash.plotly.com/introduction"
+    ]
+  },
+  "software-engineering:beginner": {
+    "title": "Bug Tracker System",
+    "description": "A simple bug tracking system simulating real-world software development environments.",
+    "tools": ["python", "sqlite3", "tkinter"],
+    "file_structure": ["main.py", "db/", "ui/"],
+    "bonus": "Email notifications for bug status",
+    "learning_outcomes": ["Agile concepts", "Issue tracking", "Software lifecycle stages"],
+    "build_steps": [
+      "Design schema for bugs, users",
+      "Create GUI to file and update bug reports",
+      "Track bug status and severity levels"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://en.wikipedia.org/wiki/Bug_tracking_system",
+      "https://tkdocs.com/tutorial/"
+    ]
+  },
+  "software-engineering:intermediate": {
+    "title": "Agile Sprint Board",
+    "description": "A desktop or web app that mimics a Kanban-style sprint board to manage user stories and tasks for software teams.",
+    "tools": ["python", "flask", "sqlite3", "bootstrap"],
+    "file_structure": ["app.py", "templates/", "static/", "models.py"],
+    "bonus": "Add drag-and-drop for task movement",
+    "learning_outcomes": ["Agile practices", "Team task management", "Web development basics"],
+    "build_steps": [
+      "Design schema for tasks and users",
+      "Set up Flask project structure",
+      "Implement CRUD for user stories and task cards",
+      "Design the UI using Bootstrap"
+    ],
+    "estimated_time": "12–15 hours",
+    "external_resources": [
+      "https://flask.palletsprojects.com/",
+      "https://getbootstrap.com/docs/5.0/getting-started/introduction/"
+    ]
+  },
+  "software-engineering:advanced": {
+    "title": "CI/CD Pipeline Simulator",
+    "description": "Simulate a full CI/CD process including code commit, automated testing, and deployment using scripting and logging.",
+    "tools": ["python", "docker", "bash", "jenkins"],
+    "file_structure": ["src/", "pipeline.sh", "Dockerfile", "logs/"],
+    "bonus": "Implement rollback on failed deploys",
+    "learning_outcomes": ["DevOps tools", "Automation scripting", "Software lifecycle automation"],
+    "build_steps": [
+      "Set up simulated Git repo and commit triggers",
+      "Create test suite and integrate with pipeline",
+      "Dockerize app and deploy on trigger",
+      "Log outputs and error handling"
+    ],
+    "estimated_time": "18–24 hours",
+    "external_resources": [
+      "https://www.jenkins.io/doc/",
+      "https://docs.docker.com/get-started/"
+    ]
+  },
+  "machine-learning:beginner": {
+    "title": "Titanic Survival Predictor",
+    "description": "A basic classification project using the Titanic dataset to predict survival based on features like age, gender, and class.",
+    "tools": ["python", "pandas", "scikit-learn"],
+    "file_structure": ["main.py", "model.py", "data/titanic.csv"],
+    "bonus": "Add confusion matrix visualization",
+    "learning_outcomes": ["Data preprocessing", "Model training", "Classification"],
+    "build_steps": [
+      "Load and clean Titanic dataset",
+      "Select relevant features",
+      "Train a simple classifier",
+      "Evaluate and visualize accuracy"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://www.kaggle.com/c/titanic",
+      "https://scikit-learn.org/stable/tutorial/basic/tutorial.html"
+    ]
+  },
+  "machine-learning:intermediate": {
+    "title": "Movie Recommendation System",
+    "description": "A content-based recommender that suggests similar movies based on input, using cosine similarity and TF-IDF.",
+    "tools": ["python", "pandas", "scikit-learn"],
+    "file_structure": ["main.py", "recommender.py", "data/movies.csv"],
+    "bonus": "Add web interface using Streamlit",
+    "learning_outcomes": ["TF-IDF vectorization", "Cosine similarity", "Recommendation logic"],
+    "build_steps": [
+      "Load and process movie metadata",
+      "Compute feature vectors",
+      "Use similarity to suggest movies",
+      "Test and evaluate recommendations"
+    ],
+    "estimated_time": "12–15 hours",
+    "external_resources": [
+      "https://www.datacamp.com/tutorial/recommender-systems-python",
+      "https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction"
+    ]
+  },
+  "machine-learning:advanced": {
+    "title": "Emotion Detection from Text",
+    "description": "Use NLP and a pretrained model to detect emotional sentiment from user-provided sentences.",
+    "tools": ["python", "transformers", "pandas", "scikit-learn"],
+    "file_structure": ["app.py", "emotion_model.py", "data/"],
+    "bonus": "Deploy with a Streamlit web interface",
+    "learning_outcomes": ["Sentiment classification", "Transformer models", "Model fine-tuning"],
+    "build_steps": [
+      "Preprocess text data",
+      "Load or fine-tune a transformer model",
+      "Evaluate performance",
+      "Create an interactive interface"
+    ],
+    "estimated_time": "16–20 hours",
+    "external_resources": [
+      "https://huggingface.co/transformers/",
+      "https://www.analyticsvidhya.com/blog/2021/06/guide-to-emotion-detection-using-nlp/"
+    ]
+  },
+  "data-science:beginner": {
+    "title": "Student Performance Dashboard",
+    "description": "Build a simple dashboard to visualize student grades and attendance, and identify trends using pandas and matplotlib.",
+    "tools": ["python", "pandas", "matplotlib"],
+    "file_structure": ["main.py", "data/students.csv", "visuals/"],
+    "bonus": "Add exportable PDF reports",
+    "learning_outcomes": ["Data wrangling", "Basic plotting", "Dashboard logic"],
+    "build_steps": [
+      "Load and clean student data",
+      "Generate visualizations",
+      "Create interactive UI or static HTML report"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://pandas.pydata.org/",
+      "https://matplotlib.org/stable/gallery/index.html"
+    ]
+  },
+  "data-science:intermediate": {
+    "title": "Sales Forecasting with Linear Regression",
+    "description": "Use historical sales data to forecast future revenue trends with linear regression models.",
+    "tools": ["python", "pandas", "seaborn", "scikit-learn"],
+    "file_structure": ["main.py", "model.py", "data/sales.csv"],
+    "bonus": "Add prediction intervals",
+    "learning_outcomes": ["Regression analysis", "Data visualization", "Model evaluation"],
+    "build_steps": [
+      "Explore and clean the dataset",
+      "Split into train/test sets",
+      "Build and train regression model",
+      "Plot forecast and analyze error"
+    ],
+    "estimated_time": "12–15 hours",
+    "external_resources": [
+      "https://scikit-learn.org/stable/",
+      "https://seaborn.pydata.org/tutorial/regression.html"
+    ]
+  },
+  "data-science:advanced": {
+    "title": "Customer Segmentation using K-Means",
+    "description": "Perform clustering analysis on customer data to find behavioral segments and visualize them.",
+    "tools": ["python", "pandas", "scikit-learn", "plotly"],
+    "file_structure": ["cluster.py", "data/customers.csv", "visuals/"],
+    "bonus": "Use PCA to reduce dimensionality",
+    "learning_outcomes": ["Clustering techniques", "Unsupervised learning", "Data storytelling"],
+    "build_steps": [
+      "Preprocess and normalize dataset",
+      "Apply K-means algorithm",
+      "Visualize clusters",
+      "Analyze business insights"
+    ],
+    "estimated_time": "14–18 hours",
+    "external_resources": [
+      "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+      "https://www.kaggle.com/code/guptaonlearn/customer-segmentation-analysis"
+    ]
+  },
+  "web-dev:beginner": {
+    "title": "Responsive Portfolio Website",
+    "description": "Build a personal portfolio site using HTML, CSS, and basic JavaScript with responsive design.",
+    "tools": ["HTML", "CSS", "JavaScript"],
+    "file_structure": ["index.html", "style.css", "script.js", "images/"],
+    "bonus": "Add dark/light mode toggle",
+    "learning_outcomes": ["HTML/CSS structure", "Responsive layout", "JavaScript basics"],
+    "build_steps": [
+      "Design layout and navigation",
+      "Write HTML structure",
+      "Apply CSS styling and media queries",
+      "Add interactivity with JS"
+    ],
+    "estimated_time": "8–10 hours",
+    "external_resources": [
+      "https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web",
+      "https://www.freecodecamp.org/news/learn-responsive-web-design-in-5-minutes/"
+    ]
+  },
+  "web-dev:intermediate": {
+    "title": "Blog CMS with Admin Panel",
+    "description": "Create a blog platform where users can read posts and admins can manage content.",
+    "tools": ["Node.js", "Express", "MongoDB", "EJS"],
+    "file_structure": ["app.js", "views/", "routes/", "models/", "public/"],
+    "bonus": "Add user authentication",
+    "learning_outcomes": ["Routing", "CRUD operations", "Template rendering"],
+    "build_steps": [
+      "Set up Express server",
+      "Design MongoDB schema",
+      "Implement post creation and editing",
+      "Design EJS views for display"
+    ],
+    "estimated_time": "12–15 hours",
+    "external_resources": [
+      "https://expressjs.com/",
+      "https://www.mongodb.com/docs/manual/"
+    ]
+  },
+  "web-dev:advanced": {
+    "title": "Real-Time Chat App",
+    "description": "Develop a chat application with real-time messaging, user authentication, and chat rooms.",
+    "tools": ["React", "Node.js", "Socket.IO", "MongoDB"],
+    "file_structure": ["client/", "server/", "models/", "sockets/"],
+    "bonus": "Add message reactions and read receipts",
+    "learning_outcomes": ["Websockets", "Real-time updates", "Frontend-backend integration"],
+    "build_steps": [
+      "Set up React frontend and Node.js backend",
+      "Integrate Socket.IO for real-time comms",
+      "Design MongoDB schema for users/messages",
+      "Handle authentication and chat room logic"
+    ],
+    "estimated_time": "16–20 hours",
+    "external_resources": [
+      "https://socket.io/docs/v4/",
+      "https://react.dev/learn"
+    ]
+  },
+  "mobile-dev:beginner": {
+    "title": "Habit Tracker Mobile App",
+    "description": "A basic mobile app that helps users track and maintain daily habits like drinking water, exercising, or reading.",
+    "tools": ["Flutter", "Dart"],
+    "file_structure": ["lib/", "main.dart", "screens/", "models/"],
+    "bonus": "Add local notifications for daily reminders",
+    "learning_outcomes": ["Flutter UI", "State management", "Data persistence"],
+    "build_steps": [
+      "Initialize Flutter project",
+      "Create habit model",
+      "Design UI for habit list and check-ins",
+      "Implement local data storage with shared_preferences"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://flutter.dev/docs/get-started/install",
+      "https://pub.dev/packages/shared_preferences"
+    ]
+  },
+  "mobile-dev:intermediate": {
+    "title": "Expense Splitter App",
+    "description": "A mobile app to track shared expenses among friends, ideal for roommates or travel buddies.",
+    "tools": ["React Native", "JavaScript", "SQLite"],
+    "file_structure": ["App.js", "components/", "screens/", "database/"],
+    "bonus": "Add payment link integration",
+    "learning_outcomes": ["Component-based design", "Mobile database integration", "React Native navigation"],
+    "build_steps": [
+      "Set up React Native project",
+      "Design expense and user models",
+      "Implement screens for adding/viewing expenses",
+      "Use SQLite for local storage"
+    ],
+    "estimated_time": "12–15 hours",
+    "external_resources": [
+      "https://reactnative.dev/",
+      "https://github.com/andpor/react-native-sqlite-storage"
+    ]
+  },
+  "mobile-dev:advanced": {
+    "title": "AI Fitness Assistant",
+    "description": "An advanced fitness app that uses device sensors and AI to recommend workouts and track movement patterns.",
+    "tools": ["Kotlin", "TensorFlow Lite", "ML Kit"],
+    "file_structure": ["src/", "models/", "ui/", "sensors/"],
+    "bonus": "Integrate voice commands for interaction",
+    "learning_outcomes": ["Sensor data processing", "On-device ML", "Mobile UI/UX"],
+    "build_steps": [
+      "Collect sensor input (accelerometer, gyroscope)",
+      "Integrate pre-trained ML model for activity recognition",
+      "Design UI for workout guidance",
+      "Test on multiple Android devices"
+    ],
+    "estimated_time": "18–24 hours",
+    "external_resources": [
+      "https://www.tensorflow.org/lite",
+      "https://developer.android.com/training/data-storage"
+    ]
+  },
+  "dsa:beginner": {
+    "title": "Visual Sorting Algorithm Simulator",
+    "description": "A simple desktop app to help users visualize how sorting algorithms like Bubble Sort and Insertion Sort work.",
+    "tools": ["Python", "Tkinter"],
+    "file_structure": ["main.py", "algorithms/", "ui/"],
+    "bonus": "Add step-by-step control to watch each operation",
+    "learning_outcomes": ["Sorting algorithms", "Event-driven programming", "Basic GUI design"],
+    "build_steps": [
+      "Set up a basic Tkinter window",
+      "Implement sorting logic for 2–3 algorithms",
+      "Design interface for input and visualization",
+      "Link sorting functions with visual updates"
+    ],
+    "estimated_time": "8–10 hours",
+    "external_resources": [
+      "https://tkdocs.com/",
+      "https://visualgo.net/en/sorting"
+    ]
+  },
+  "dsa:intermediate": {
+    "title": "Interactive Graph Path Finder",
+    "description": "A tool to allow users to create a graph, then find shortest paths using BFS and DFS.",
+    "tools": ["JavaScript", "HTML", "CSS"],
+    "file_structure": ["index.html", "scripts/", "styles/"],
+    "bonus": "Allow weighted paths and add Dijkstra's algorithm",
+    "learning_outcomes": ["Graph theory", "Pathfinding algorithms", "DOM manipulation"],
+    "build_steps": [
+      "Design UI to draw nodes and edges",
+      "Implement BFS and DFS traversal",
+      "Allow user to trigger searches interactively",
+      "Highlight paths and steps dynamically"
+    ],
+    "estimated_time": "10–14 hours",
+    "external_resources": [
+      "https://www.cs.usfca.edu/~galles/visualization/Algorithms.html",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    ]
+  },
+  "dsa:advanced": {
+    "title": "Algorithmic Trading Strategy Simulator",
+    "description": "A simulator that allows users to test different algorithmic trading strategies using historical market data.",
+    "tools": ["Python", "Pandas", "Matplotlib"],
+    "file_structure": ["strategies/", "data/", "main.py"],
+    "bonus": "Add Monte Carlo simulation for risk analysis",
+    "learning_outcomes": ["Algorithmic thinking", "Backtesting", "Data analysis"],
+    "build_steps": [
+      "Load historical market data",
+      "Create basic buy/sell strategies",
+      "Implement logic to simulate trades",
+      "Visualize results using Matplotlib"
+    ],
+    "estimated_time": "15–20 hours",
+    "external_resources": [
+      "https://www.investopedia.com/terms/a/algorithmictrading.asp",
+      "https://pandas.pydata.org/"
+    ]
+  },
+  "cloud-computing:beginner": {
+    "title": "Cloud-Based Static Website Hosting",
+    "description": "Deploy a static website to a cloud service using basic storage and hosting tools. Learn the fundamentals of cloud platforms through practical deployment.",
+    "tools": ["HTML", "CSS", "AWS S3", "Google Cloud Storage"],
+    "file_structure": ["index.html", "styles.css", "assets/"],
+    "bonus": "Add a custom domain and enable HTTPS",
+    "learning_outcomes": ["Cloud storage basics", "Static site deployment", "DNS and HTTPS setup"],
+    "build_steps": [
+      "Design a basic static website",
+      "Create a cloud storage bucket",
+      "Upload files and enable static website hosting",
+      "Test live deployment and access URL"
+    ],
+    "estimated_time": "6–8 hours",
+    "external_resources": [
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html",
+      "https://cloud.google.com/storage/docs/hosting-static-website"
+    ]
+  },
+  "cloud-computing:intermediate": {
+    "title": "Serverless API with Cloud Functions",
+    "description": "Build a backend API using serverless cloud functions that perform basic operations like data retrieval or user input processing.",
+    "tools": ["JavaScript", "Firebase Functions", "Google Cloud Functions"],
+    "file_structure": ["functions/index.js", "package.json", "README.md"],
+    "bonus": "Connect to Firestore or another NoSQL database",
+    "learning_outcomes": ["Serverless computing", "Event-driven architecture", "API deployment"],
+    "build_steps": [
+      "Set up a cloud functions project",
+      "Write basic API handlers",
+      "Deploy and test API endpoints",
+      "Log and monitor cloud function executions"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://firebase.google.com/docs/functions",
+      "https://cloud.google.com/functions/docs"
+    ]
+  },
+  "cloud-computing:advanced": {
+    "title": "Scalable Microservices with Kubernetes",
+    "description": "Develop a set of containerized microservices and deploy them to a cloud Kubernetes cluster with autoscaling and load balancing.",
+    "tools": ["Docker", "Kubernetes", "GCP", "AWS EKS"],
+    "file_structure": ["services/", "Dockerfiles", "k8s-deployments/", "README.md"],
+    "bonus": "Implement CI/CD pipeline for automatic deployments",
+    "learning_outcomes": ["Container orchestration", "Scalability and reliability", "Kubernetes resource management"],
+    "build_steps": [
+      "Containerize multiple services with Docker",
+      "Create Kubernetes deployment and service configs",
+      "Deploy to a managed Kubernetes cluster",
+      "Monitor resource usage and enable autoscaling"
+    ],
+    "estimated_time": "20–25 hours",
+    "external_resources": [
+      "https://kubernetes.io/docs/home/",
+      "https://cloud.google.com/kubernetes-engine/docs/tutorials"
+    ]
+  },
+  "cybersecurity:beginner": {
+    "title": "Secure File Locker",
+    "description": "Create a simple Python-based file encryption and decryption tool to teach students the basics of cryptography and file security.",
+    "tools": ["Python", "Fernet (cryptography library)"],
+    "file_structure": ["main.py", "locker.py", "README.md"],
+    "bonus": "Add password-based access control",
+    "learning_outcomes": ["Basic encryption/decryption", "File handling", "Modular Python scripting"],
+    "build_steps": [
+      "Set up project with necessary modules",
+      "Implement file encryption and decryption functions",
+      "Add simple command-line interface",
+      "Test with sample files"
+    ],
+    "estimated_time": "6–8 hours",
+    "external_resources": [
+      "https://cryptography.io/en/latest/fernet/",
+      "https://realpython.com/python-encodings-guide/"
+    ]
+  },
+  "cybersecurity:intermediate": {
+    "title": "Vulnerability Scanner CLI",
+    "description": "Build a command-line tool that scans websites for basic vulnerabilities such as open ports and outdated software.",
+    "tools": ["Python", "Nmap", "Requests"],
+    "file_structure": ["scanner.py", "utils.py", "results/", "README.md"],
+    "bonus": "Generate PDF vulnerability report",
+    "learning_outcomes": ["Network scanning", "Security auditing", "Modular Python development"],
+    "build_steps": [
+      "Set up CLI interface",
+      "Integrate Nmap and requests for scanning",
+      "Store and format scan results",
+      "Display results with simple analytics"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://nmap.org/book/inst-windows.html",
+      "https://owasp.org/www-project-vulnerability-scanner/"
+    ]
+  },
+  "cybersecurity:advanced": {
+    "title": "Secure Login System with 2FA",
+    "description": "Develop a secure login system with two-factor authentication and encrypted user credentials for a web application.",
+    "tools": ["Node.js", "Express", "MongoDB", "Twilio API"],
+    "file_structure": ["server/", "routes/", "models/", "views/", "README.md"],
+    "bonus": "Add login attempt logging with IP tracking",
+    "learning_outcomes": ["Authentication flows", "Token-based security", "2FA integration"],
+    "build_steps": [
+      "Set up Express server and routes",
+      "Implement user signup/login with hashed passwords",
+      "Add 2FA via SMS using Twilio",
+      "Secure session handling and test edge cases"
+    ],
+    "estimated_time": "14–18 hours",
+    "external_resources": [
+      "https://www.twilio.com/docs/verify/api",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html"
+    ]
+  },
+  "devops:beginner": {
+  "title": "Simple CI/CD Pipeline with GitHub Actions",
+  "description": "Learn the basics of continuous integration and deployment by setting up a GitHub Actions pipeline that runs tests and builds a project on each commit.",
+  "tools": ["GitHub Actions", "YAML", "Git"],
+  "file_structure": [".github/workflows/main.yml", "src/", "tests/"],
+  "bonus": "Send build notifications via Slack or email",
+  "learning_outcomes": ["Basic CI/CD concepts", "GitHub Actions syntax", "Automated testing"],
+  "build_steps": [
+    "Initialize GitHub repo with sample code",
+    "Write a basic workflow YAML file",
+    "Add test scripts and integrate with workflow",
+    "Trigger builds on pull requests or commits"
+  ],
+  "estimated_time": "6–8 hours",
+  "external_resources": [
+    "https://docs.github.com/en/actions",
+    "https://www.freecodecamp.org/news/learn-github-actions-in-5-minutes/"
+  ]
+},
+
+  "devops:intermediate": {
+  "title": "Dockerized Node.js App with CI/CD",
+  "description": "Create a Node.js application, containerize it with Docker, and deploy using GitHub Actions to a staging server.",
+  "tools": ["Node.js", "Docker", "GitHub Actions", "Docker Hub"],
+  "file_structure": ["Dockerfile", ".github/workflows/deploy.yml", "app/", "README.md"],
+  "bonus": "Deploy to a cloud VM (e.g., DigitalOcean or AWS EC2)",
+  "learning_outcomes": ["Docker basics", "CI/CD pipelines", "Container deployment"],
+  "build_steps": [
+    "Create simple Node.js web app",
+    "Write Dockerfile and test container locally",
+    "Configure GitHub Actions workflow to build and push image",
+    "Optionally SSH and deploy to a remote server"
+  ],
+  "estimated_time": "10–14 hours",
+  "external_resources": [
+    "https://nodejs.org/en/docs",
+    "https://docs.docker.com/",
+    "https://docs.github.com/en/actions"
+  ]
+},
+
+  "devops:advanced": {
+  "title": "Kubernetes-Powered Microservices with CI/CD",
+  "description": "Build a microservice architecture with multiple services, containerize them, and deploy to a Kubernetes cluster with a full CI/CD pipeline using GitHub Actions and Helm.",
+  "tools": ["Docker", "Kubernetes", "Helm", "GitHub Actions", "GKE/EKS"],
+  "file_structure": ["services/", "k8s/", "Dockerfiles", ".github/workflows/", "README.md"],
+  "bonus": "Integrate Prometheus and Grafana for monitoring",
+  "learning_outcomes": ["Microservices", "CI/CD orchestration", "Cloud-native DevOps"],
+  "build_steps": [
+    "Design and code microservices (e.g., auth, product, billing)",
+    "Write Dockerfiles and push to registry",
+    "Create Helm charts for each service",
+    "Configure GitHub Actions to deploy on merge",
+    "Deploy to cloud Kubernetes cluster"
+  ],
+  "estimated_time": "20–30 hours",
+  "external_resources": [
+    "https://kubernetes.io/docs/home/",
+    "https://docs.github.com/en/actions",
+    "https://helm.sh/docs/"
+  ]
+},
+  "ai-and-deep-learning:beginner": {
+    "title": "Handwritten Digit Classifier",
+    "description": "Build a basic image classification app using a pre-trained MNIST model to recognize handwritten digits.",
+    "tools": ["Python", "TensorFlow/Keras", "Streamlit"],
+    "file_structure": ["app.py", "model.h5", "utils.py", "samples/"],
+    "bonus": "Allow users to draw digits in-browser",
+    "learning_outcomes": ["Pre-trained models", "Image preprocessing", "Intro to neural networks"],
+    "build_steps": [
+      "Load and test a pre-trained MNIST model",
+      "Set up Streamlit interface",
+      "Allow image upload or canvas input",
+      "Display prediction and probability graph"
+    ],
+    "estimated_time": "8–10 hours",
+    "external_resources": [
+      "https://www.tensorflow.org/tutorials/keras/classification",
+      "https://streamlit.io/"
+    ]
+  },
+  "ai-and-deep-learning:intermediate": {
+    "title": "AI-Powered Resume Screener",
+    "description": "Develop an NLP model that screens and ranks resumes based on job descriptions using semantic similarity.",
+    "tools": ["Python", "HuggingFace Transformers", "scikit-learn"],
+    "file_structure": ["main.py", "resumes/", "jd.txt", "model_utils.py"],
+    "bonus": "Build a Streamlit or Flask interface",
+    "learning_outcomes": ["NLP preprocessing", "Transformer embeddings", "Similarity scoring"],
+    "build_steps": [
+      "Load transformer model (e.g., BERT)",
+      "Preprocess and embed resumes & JD",
+      "Score similarity and rank outputs",
+      "Test with real/fake data"
+    ],
+    "estimated_time": "12–16 hours",
+    "external_resources": [
+      "https://huggingface.co/transformers/",
+      "https://scikit-learn.org/"
+    ]
+  },
+  "ai-and-deep-learning:advanced": {
+    "title": "AI Virtual Assistant with Voice Recognition",
+    "description": "Create an AI assistant that takes voice commands and uses LLM or dialogue models to provide intelligent responses.",
+    "tools": ["Python", "OpenAI API", "SpeechRecognition", "Flask"],
+    "file_structure": ["app/", "speech/", "llm_response.py", "templates/", "README.md"],
+    "bonus": "Add memory to retain previous context",
+    "learning_outcomes": ["Voice-to-text pipelines", "LLM integration", "Conversational AI design"],
+    "build_steps": [
+      "Capture audio input",
+      "Convert to text and send to LLM",
+      "Generate response and synthesize speech",
+      "Integrate feedback loop and error handling"
+    ],
+    "estimated_time": "18–24 hours",
+    "external_resources": [
+      "https://platform.openai.com/docs",
+      "https://realpython.com/python-speech-recognition/"
+    ]
+  },
+  "game-dev:beginner": {
+    "title": "Color Catcher",
+    "description": "A simple browser-based game where players catch falling colored objects that match a target color. Helps reinforce game loops, collision detection, and UI design.",
+    "tools": ["HTML5", "CSS3", "JavaScript", "Phaser.js"],
+    "file_structure": ["index.html", "style.css", "game.js", "assets/"],
+    "bonus": "Add increasing difficulty with speed scaling",
+    "learning_outcomes": ["Phaser basics", "Game mechanics", "Event handling", "DOM manipulation"],
+    "build_steps": [
+      "Set up the game canvas",
+      "Render falling objects with random colors",
+      "Detect player input to catch objects",
+      "Check color match logic and score",
+      "Display end game message and replay option"
+    ],
+    "estimated_time": "6–8 hours",
+    "external_resources": [
+      "https://phaser.io/tutorials/getting-started",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+    ]
+  },
+  "game-dev:intermediate": {
+    "title": "Maze Escape",
+    "description": "A 2D puzzle game where players navigate procedurally generated mazes. The game challenges logic and spatial skills while teaching procedural generation.",
+    "tools": ["JavaScript", "Phaser.js", "HTML5", "CSS3"],
+    "file_structure": ["index.html", "style.css", "maze.js", "player.js", "assets/"],
+    "bonus": "Add leaderboard using local storage",
+    "learning_outcomes": ["Maze generation algorithms", "Collision detection", "Game state management"],
+    "build_steps": [
+      "Design the maze layout and player sprite",
+      "Implement random maze generation",
+      "Add keyboard controls and movement",
+      "Handle win condition and level progression",
+      "Add UI for score and restart"
+    ],
+    "estimated_time": "10–12 hours",
+    "external_resources": [
+      "https://phaser.io/examples",
+      "https://weblog.jamisbuck.org/2011/2/7/maze-generation-algorithm-recap"
+    ]
+  },
+  "game-dev:advanced": {
+    "title": "Cyber Defense Simulator",
+    "description": "A strategy game where players build a virtual defense system to stop cyber-attacks in real time. It integrates cybersecurity logic with advanced game loops and resource management.",
+    "tools": ["Unity", "C#", "Firebase (for leaderboard)"],
+    "file_structure": ["Assets/", "Scripts/", "Scenes/", "Prefabs/", "UI/"],
+    "bonus": "Add AI enemy patterns and adaptive difficulty",
+    "learning_outcomes": ["Unity game logic", "Real-time mechanics", "Security simulation modeling"],
+    "build_steps": [
+      "Design the game loop and cyber threat models",
+      "Create player-controlled defense elements",
+      "Implement health, scoring, and upgrade systems",
+      "Sync leaderboard using Firebase",
+      "Test balance and user interaction"
+    ],
+    "estimated_time": "18–22 hours",
+    "external_resources": [
+      "https://learn.unity.com/",
+      "https://firebase.google.com/docs"
+    ]
+  }
+}

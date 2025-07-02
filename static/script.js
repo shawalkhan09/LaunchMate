@@ -1,6 +1,84 @@
+// Skeleton Loader State Management
+let isLoading = true;
+
+function createSkeletonLoader() {
+    // Set body background for skeleton
+    document.body.style.backgroundColor = 'rgb(241, 245, 249)';
+    document.documentElement.classList.contains('dark') && (document.body.style.backgroundColor = 'rgb(15, 23, 42)');
+
+    const sections = [
+        {
+            id: 'nav-skeleton',
+            className: 'fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm',
+            height: 'h-16'
+        },
+        {
+            id: 'hero-skeleton',
+            className: 'pt-32 pb-20 px-6',
+            content: `
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div class="space-y-8 animate-pulse">
+                            <div class="h-12 bg-slate-200 dark:bg-slate-700 rounded-lg w-3/4"></div>
+                            <div class="h-8 bg-slate-200 dark:bg-slate-700 rounded-lg w-full"></div>
+                            <div class="space-y-3">
+                                <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-5/6"></div>
+                                <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-4/6"></div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="h-12 bg-slate-200 dark:bg-slate-700 rounded-lg w-32"></div>
+                                <div class="h-12 bg-slate-200 dark:bg-slate-700 rounded-lg w-32"></div>
+                            </div>
+                        </div>
+                        <div class="hidden lg:block h-96 bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse"></div>
+                    </div>
+                </div>
+            `
+        },
+        {
+            id: 'features-skeleton',
+            className: 'py-20 px-6',
+            content: `
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
+                        ${Array(6).fill().map(() => `
+                            <div class="p-6 rounded-2xl bg-slate-200 dark:bg-slate-700 h-48"></div>
+                        `).join('')}
+                    </div>
+                </div>
+            `
+        }
+    ];
+
+    sections.forEach(section => {
+        const sectionEl = document.createElement('section');
+        sectionEl.id = section.id;
+        sectionEl.className = `${section.className} animate-pulse`;
+        if (section.content) {
+            sectionEl.innerHTML = section.content;
+        } else if (section.height) {
+            sectionEl.className += ` ${section.height} bg-slate-200 dark:bg-slate-700`;
+        }
+        document.body.appendChild(sectionEl);
+    });
+}
+
+function removeSkeletonLoader() {
+    const skeletons = document.querySelectorAll('[id$="-skeleton"]');
+    skeletons.forEach(skeleton => {
+        skeleton.classList.add('fade-out');
+        setTimeout(() => skeleton.remove(), 300);
+    });
+}
+
+// Create skeleton loader immediately
+createSkeletonLoader();
+
 document.addEventListener('DOMContentLoaded', function () {
+    
     // Theme Management
     const themeToggle = document.getElementById('theme-toggle');
+
     const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
     const html = document.documentElement;
 
@@ -228,28 +306,28 @@ document.addEventListener('DOMContentLoaded', function () {
     elements.generateBtn?.addEventListener('click', async function () {
         const course = elements.courseSelect.value;
         const difficulty = elements.difficultySelect.value;
-    
+
         if (!course || !difficulty) {
             showToast('Please select both course and difficulty level', 'error');
             return;
         }
-        
+
         elements.projectResult?.classList.add('hidden');        // ✅ hide old result
         elements.projectLoader?.classList.remove('hidden');     // ✅ show loader
         setLoadingState(elements.generateBtn, true);
         startLoading();
-    
+
         try {
-            const response = await fetch('/generate', {
+            const response = await fetch('/api/generate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ course, difficulty })
             });
-    
+
             const projectData = await response.json();
-    
+
             if (response.ok) {
                 elements.title.textContent = projectData.title;
                 elements.description.textContent = projectData.description;
@@ -259,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 elements.buildSteps.innerHTML = projectData.build_steps.map(step => `<li>${step}</li>`).join('');
                 elements.apiLinks.innerHTML = projectData.external_resources.map(link => `<li><a href="${link}" target="_blank">${link}</a></li>`).join('');
                 elements.estimatedTime.textContent = projectData.estimated_time;
-    
+
                 showToast('Project generated successfully!', 'success');
                 elements.result.classList.remove('hidden');
                 scrollToElement('#result');
@@ -277,8 +355,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Download functionality
+    // Download and Copy functionality
     const downloadBtn = document.getElementById('downloadBtn');
+    const copyBtn = document.getElementById('copyBtn');
+
     if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
             downloadBtn.classList.add('animate-pulse');
@@ -288,6 +368,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const content = generateDownloadContent();
             downloadFile(content, `${elements.title.textContent.replace(/\s+/g, '_')}_Project.md`);
+        });
+    }
+
+    if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+            // Add visual feedback
+            copyBtn.classList.add('animate-pulse');
+            copyBtn.disabled = true;
+            
+            try {
+                // Generate the same content as download
+                const content = generateDownloadContent();
+                
+                // Try to copy to clipboard
+                await navigator.clipboard.writeText(content);
+                showToast('✨ Project content copied to clipboard!', 'success');
+            } catch (err) {
+                console.error('Copy failed:', err);
+                // Fallback for browsers that don't support clipboard API
+                try {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = content;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    showToast('✨ Project content copied to clipboard!', 'success');
+                } catch (fallbackErr) {
+                    showToast('❌ Failed to copy content to clipboard', 'error');
+                }
+            } finally {
+                // Reset button state
+                setTimeout(() => {
+                    copyBtn.classList.remove('animate-pulse');
+                    copyBtn.disabled = false;
+                }, 1000);
+            }
         });
     }
 
@@ -423,18 +542,17 @@ ${elements.estimatedTime.textContent}
 
     function showToast(message, type = 'info', duration = 3000) {
         const container = document.getElementById('toast-container');
-        
+
         // Create toast with Tailwind classes
         const toast = document.createElement('div');
         toast.className = `animate-[toastIn_0.3s_ease-out] p-4 rounded-lg shadow-md border flex items-center justify-between 
-            ${
-                type === 'success' ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200' :
+            ${type === 'success' ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200' :
                 type === 'error' ? 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-200' :
-                type === 'warning' ? 'bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-200' :
-                'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-200' // default/info
+                    type === 'warning' ? 'bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-200' :
+                        'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-200' // default/info
             }
             animate-[toastIn_0.3s_ease-out]`;
-        
+
         // Toast content
         toast.innerHTML = `
             <span>${message}</span>
@@ -442,20 +560,20 @@ ${elements.estimatedTime.textContent}
                 &times;
             </button>
         `;
-        
+
         container.appendChild(toast);
-        
+
         // Auto-remove
         const timer = setTimeout(() => {
             removeToast(toast);
         }, duration);
-        
+
         // Manual close
         toast.querySelector('button').addEventListener('click', () => {
             clearTimeout(timer);
             removeToast(toast);
         });
-        
+
         function removeToast(toastElement) {
             toastElement.classList.remove('animate-[toastIn_0.3s_ease-out]');
             toastElement.classList.add('animate-[toastOut_0.3s_ease-out]');
@@ -465,6 +583,167 @@ ${elements.estimatedTime.textContent}
             toastElement.addEventListener('animationend', () => toastElement.remove(), { once: true });
         }
     }
-}); 
+
+    // Add fade-out animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .fade-out { opacity: 0; transition: opacity 0.3s ease-out; }
+        .content-hidden { display: none; }
+    `;
+    document.head.appendChild(style);
+
+    // Hide main content initially
+    document.querySelectorAll('body > *:not([id$="-skeleton"])').forEach(el => {
+        el.classList.add('content-hidden');
+    });
+
+    // Handle page load completion
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            isLoading = false;
+            removeSkeletonLoader();
+            // Show main content
+            document.querySelectorAll('.content-hidden').forEach(el => {
+                el.classList.remove('content-hidden');
+            });
+            // Restore original background
+            document.body.style.backgroundColor = '';
+        }, 1500);
+    });
+
+    window.addEventListener("DOMContentLoaded", async () => {
+        const urlParams = new URLSearchParams(window.location.hash.substring(1));
+        const accessToken = urlParams.get("access_token");
+    
+        if (accessToken) {
+            try {
+                const res = await fetch("/auth/callback", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ access_token: accessToken })
+                });
+    
+                if (res.ok) {
+                    // ✅ Clear hash (optional, but clean)
+                    window.location.hash = "";
+                
+                    // ✅ Force full reload with updated session
+                    window.location.replace("/");
+                } else {
+                    const data = await res.json();
+                    console.error("❌ Auth callback failed:", data.error);
+                }
+            } catch (error) {
+                console.error("❌ Error during auth callback:", error);
+            }
+        }
+    });
+
+    document.getElementById('save-project-btn').onclick = async (e) => {
+    const btn = e.currentTarget;
+
+    // 🛡 Prevent multiple clicks
+    btn.disabled = true;
+    btn.textContent = "Saving...";
+
+    const title = document.getElementById('title')?.textContent;
+    const course = document.getElementById('courseSelect')?.value || "unknown";
+    const description = document.getElementById('description')?.textContent;
+
+    const tags = Array.from(document.querySelectorAll('#tools span')).map(el => el.textContent.trim());
+    const tools = tags;
+
+    const file_structure = document.getElementById('fileStructure')?.textContent
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line);
+
+    const learning_outcomes = Array.from(document.querySelectorAll('#learningOutcomes li')).map(li => li.textContent.trim());
+    const build_steps = Array.from(document.querySelectorAll('#buildSteps li')).map(li => li.textContent.trim());
+    const external_resources = Array.from(document.querySelectorAll('#apiLinks a')).map(a => a.href.trim());
+    const estimated_time = document.getElementById('estimatedTime')?.textContent.trim() || "";
+    const bonus = document.getElementById('bonus')?.textContent.trim() || "";
+
+    if (!title || !course || !description) {
+        showToast("❌ Missing essential project info.", "error");
+        btn.disabled = false;
+        btn.textContent = "Save Project";
+        return;
+    }
+
+    try {
+        const response = await fetch('/save-project', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title,
+                course,
+                description,
+                tags,
+                tools,
+                file_structure,
+                bonus,
+                learning_outcomes,
+                build_steps,
+                estimated_time,
+                external_resources
+            })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            console.log("✅ response.ok is TRUE");
+            console.log("Returned result:", result);
+
+            const msg = result.message?.includes("already")
+                ? "ℹ️ Project already exists!"
+                : "✅ Project saved successfully!";
+            showToast(msg, "success");
+
+            btn.textContent = "Saved!";
+        } else {
+            showToast(`❌ Failed to save project: ${result.error || "Unknown error"}`, "error");
+            btn.textContent = "Save Project";
+            btn.disabled = false;
+        }
+    } catch (err) {
+        console.error("Save error:", err);
+        showToast("❌ Error saving project.", "error");
+        btn.disabled = false;
+        btn.textContent = "Save Project";
+    }
+};
+
+
+    window.addEventListener("DOMContentLoaded", async () => {
+        const fragment = new URLSearchParams(window.location.hash.slice(1));
+        const accessToken = fragment.get("access_token");
+
+        if (accessToken) {
+            try {
+                const res = await fetch("/auth/callback", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ access_token: accessToken })
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    // Refresh the page so session data is set and nav updates
+                    window.location.href = "/";
+                } else {
+                    console.error("Auth failed:", data.error);
+                }
+            } catch (e) {
+                console.error("Error during auth callback:", e);
+            }
+        }
+    });
+});
 
 
