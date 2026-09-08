@@ -201,18 +201,18 @@ document.addEventListener('DOMContentLoaded', function () {
         stepIcon.className = 'step-icon w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300';
 
         if (isActive) {
-            stepElement.classList.add('bg-blue-100', 'dark:bg-blue-900/30', 'scale-105');
-            stepIcon.classList.add('bg-blue-600', 'text-white', 'animate-pulse-slow');
-            stepText.classList.add('text-blue-700', 'dark:text-blue-300');
+            stepElement.classList.add('bg-violet-100', 'dark:bg-violet-900/30', 'scale-105');
+            stepIcon.classList.add('bg-violet-600', 'text-white', 'animate-pulse-slow');
+            stepText.classList.add('text-violet-700', 'dark:text-violet-300');
 
             // Add bouncing dots using the new animation
             if (!stepElement.querySelector('.bouncing-dots')) {
                 const dots = document.createElement('div');
                 dots.className = 'bouncing-dots flex space-x-1';
                 dots.innerHTML = `
-                    <div class="w-2 h-2 bg-blue-600 rounded-full animate-bounce-slow"></div>
-                    <div class="w-2 h-2 bg-blue-600 rounded-full animate-bounce-slow" style="animation-delay: 0.1s;"></div>
-                    <div class="w-2 h-2 bg-blue-600 rounded-full animate-bounce-slow" style="animation-delay: 0.2s;"></div>
+                    <div class="w-2 h-2 bg-violet-600 rounded-full animate-bounce-slow"></div>
+                    <div class="w-2 h-2 bg-violet-600 rounded-full animate-bounce-slow" style="animation-delay: 0.1s;"></div>
+                    <div class="w-2 h-2 bg-violet-600 rounded-full animate-bounce-slow" style="animation-delay: 0.2s;"></div>
                 `;
                 stepElement.appendChild(dots);
             }
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (Array.isArray(data.tools)) {
             data.tools.forEach(tool => {
                 const span = document.createElement('span');
-                span.className = 'badge badge-blue';
+                span.className = 'px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300';
                 span.textContent = tool;
                 elements.tools.appendChild(span);
             });
@@ -542,7 +542,7 @@ ${elements.estimatedTime.textContent}
             ${type === 'success' ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200' :
                 type === 'error' ? 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-200' :
                     type === 'warning' ? 'bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-200' :
-                        'bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-200' // default/info
+                        'bg-violet-50 border-violet-200 text-violet-800 dark:bg-violet-900/20 dark:border-violet-800 dark:text-violet-200' // default/info
             }
             animate-[toastIn_0.3s_ease-out]`;
 
