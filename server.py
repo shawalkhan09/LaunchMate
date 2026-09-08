@@ -17,7 +17,7 @@ app.logger.setLevel(logging.INFO)
 
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 if not app.secret_key:
-    app.logger.warning("FLASK_SECRET_KEY not set — using a throwaway key; sessions won't survive a restart.")
+    app.logger.warning("FLASK_SECRET_KEY not set: using a throwaway key. Sessions won't survive a restart.")
     app.secret_key = os.urandom(24)
 
 VALID_COURSES = set(course_prompt_map.keys())
@@ -126,7 +126,7 @@ def auth_callback():
         session["user_id"] = user_id
         session["email"] = email
 
-    # ✅ INSERT INTO CUSTOM USERS TABLE IF NOT EXISTS
+    # Insert into custom users table if not exists
         existing_user = supabase.table("users").select("id").eq("id", user_id).execute()
         if not existing_user.data:
             supabase.table("users").insert({
@@ -170,7 +170,7 @@ def save_project_route():
     description = data.get("description")
     tags = data.get("tags", "")
 
-    # 🔒 Ensure tags is a list and format for PostgreSQL array
+    # Ensure tags is a list and format for PostgreSQL array
     if isinstance(tags, str):
         tags = [tag.strip() for tag in tags.split(",")]
     elif not isinstance(tags, list):

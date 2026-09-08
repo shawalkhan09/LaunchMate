@@ -64,13 +64,6 @@
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
-                    <div
-                        class="w-10 h-10 bg-violet-500 rounded-xl flex items-center justify-center shadow-lg">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M19.22 4C19.5 4 19.75 4 19.96 4.05C20.13 5.44 19.94 7.09 19.39 8.89L14.89 18.96C11.14 20.9 7.11 21.5 3.85 20.24C3.63 20.15 3.39 20.03 3.17 19.87C2.94 19.7 2.76 19.47 2.66 19.16C1.4 15.9 2 11.87 3.94 8.12L14.01 3.62C15.81 3.07 17.46 2.88 18.85 3.05C18.89 3.26 18.89 3.51 18.89 3.79C18.89 3.79 18.89 3.9 18.89 4M5.93 17.57C7.16 17.91 8.4 17.93 9.63 17.64C10.19 17.5 10.76 17.3 11.32 17.05C12.47 16.5 13.53 15.77 14.5 14.91C15.46 14.05 16.32 13.08 17.06 12.02C17.47 11.37 17.84 10.67 18.16 9.93C18.79 8.4 19.16 6.87 19.22 5.43C19.22 5.43 19.22 5.32 19.22 5.21C19.22 5.1 19.22 5 19.22 4.89C17.78 4.95 16.25 5.32 14.72 5.95C14.5 6.05 14.29 6.15 14.08 6.26C13.87 6.37 13.67 6.48 13.5 6.58C13.31 6.68 13.14 6.78 12.97 6.89C12.8 7 12.63 7.1 12.47 7.21C12.3 7.33 12.14 7.44 12 7.56C11.83 7.68 11.67 7.81 11.5 7.93C11.34 8.05 11.18 8.17 11.03 8.31C10.87 8.44 10.72 8.58 10.57 8.72C10.41 8.85 10.27 9 10.12 9.15C9.97 9.3 9.83 9.44 9.67 9.59C9.54 9.75 9.41 9.89 9.27 10.05C8.85 10.56 8.44 11.09 8.08 11.63C7.69 12.2 7.35 12.79 7.04 13.39C6.72 14 6.46 14.61 6.27 15.23C6.07 15.84 5.93 16.45 5.85 17.04C5.84 17.22 5.83 17.39 5.83 17.57H5.93Z" />
-                        </svg>
-                    </div>
                     <span class="text-2xl font-bold brand-text">LaunchMate</span>
                 </div>
 
@@ -85,19 +78,10 @@
                         class="text-slate-700 hover:text-violet-600 dark:text-slate-300 dark:hover:text-violet-400 font-medium transition-colors duration-200">Courses</a>
 
                     <!-- Theme Toggle -->
-                    <button id="theme-toggle" class="btn btn-ghost w-10 h-10 p-0 rounded-lg">
-                        <svg id="theme-icon-light" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-                            </path>
-                        </svg>
-                        <svg id="theme-icon-dark" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                            </path>
-                        </svg>
+                    <button id="theme-toggle"
+                        class="btn btn-ghost h-10 px-3 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        <span class="hidden dark:inline">Light mode</span>
+                        <span class="inline dark:hidden">Dark mode</span>
                     </button>
 
                     <div class="flex items-center gap-4">
@@ -128,11 +112,9 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="btn btn-ghost md:hidden p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                <button id="mobile-menu-btn"
+                    class="btn btn-ghost md:hidden px-3 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    Menu
                 </button>
             </div>
 
@@ -150,19 +132,9 @@
                     <div class="flex items-center justify-between">
                         <span class="text-slate-700 dark:text-slate-300 font-medium">Theme</span>
                         <button id="mobile-theme-toggle"
-                            class="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-colors duration-200">
-                            <svg class="w-5 h-5 text-slate-600 dark:text-slate-400 hidden dark:block" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-                                </path>
-                            </svg>
-                            <svg class="w-5 h-5 text-slate-600 dark:text-slate-400 block dark:hidden" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                                </path>
-                            </svg>
+                            class="h-10 px-3 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-sm font-semibold text-slate-600 dark:text-slate-400 transition-colors duration-200">
+                            <span class="hidden dark:inline">Light</span>
+                            <span class="inline dark:hidden">Dark</span>
                         </button>
                     </div>
                     {% if session.get('email') %}
@@ -208,7 +180,7 @@
                             Instantly Generate AI-Powered Project Ideas
                         </h2>
                         <p class="text-xl text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
-                            LaunchMate helps students and developers create unique, course-specific project ideas for Python, Web, ML, and more — perfect for portfolios and final year projects.
+                            LaunchMate helps students and developers create unique, course-specific project ideas for Python, Web, ML, and more. Perfect for portfolios and final year projects.
                         </p>
                     </div>
 
@@ -216,11 +188,7 @@
                         <a href="#generator"
                             class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
                             Get Started
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                            </svg>
-                        </a>
+                            </a>
                         <a href="#how-it-works"
                             class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-violet-600 text-violet-600 dark:border-violet-400 dark:text-violet-400 bg-transparent hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-all duration-300 gap-2 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
                             Learn More
@@ -244,28 +212,6 @@
                                 Trusted by <span class="text-violet-600 dark:text-violet-400">500+</span> students
                             </p>
                             <div class="flex items-center gap-1">
-                                <div class="flex text-yellow-400">
-                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                </div>
                                 <span class="text-sm ml-1">4.9/5 (120 reviews)</span>
                             </div>
                         </div>
@@ -276,11 +222,7 @@
                     <div class="relative">
                         <div
                             class="w-80 h-80 bg-violet-500 dark:bg-violet-700 rounded-3xl shadow-2xl flex items-center justify-center transform rotate-3 hover:rotate-6 transition-transform duration-500 animate-float">
-                            <svg class="w-32 h-32 text-white animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M19.22 4C19.5 4 19.75 4 19.96 4.05C20.13 5.44 19.94 7.09 19.39 8.89L14.89 18.96C11.14 20.9 7.11 21.5 3.85 20.24C3.63 20.15 3.39 20.03 3.17 19.87C2.94 19.7 2.76 19.47 2.66 19.16C1.4 15.9 2 11.87 3.94 8.12L14.01 3.62C15.81 3.07 17.46 2.88 18.85 3.05C18.89 3.26 18.89 3.51 18.89 3.79C18.89 3.79 18.89 3.9 18.89 4M5.93 17.57C7.16 17.91 8.4 17.93 9.63 17.64C10.19 17.5 10.76 17.3 11.32 17.05C12.47 16.5 13.53 15.77 14.5 14.91C15.46 14.05 16.32 13.08 17.06 12.02C17.47 11.37 17.84 10.67 18.16 9.93C18.79 8.4 19.16 6.87 19.22 5.43C19.22 5.43 19.22 5.32 19.22 5.21C19.22 5.1 19.22 5 19.22 4.89C17.78 4.95 16.25 5.32 14.72 5.95C14.5 6.05 14.29 6.15 14.08 6.26C13.87 6.37 13.67 6.48 13.5 6.58C13.31 6.68 13.14 6.78 12.97 6.89C12.8 7 12.63 7.1 12.47 7.21C12.3 7.33 12.14 7.44 12 7.56C11.83 7.68 11.67 7.81 11.5 7.93C11.34 8.05 11.18 8.17 11.03 8.31C10.87 8.44 10.72 8.58 10.57 8.72C10.41 8.85 10.27 9 10.12 9.15C9.97 9.3 9.83 9.44 9.67 9.59C9.54 9.75 9.41 9.89 9.27 10.05C8.85 10.56 8.44 11.09 8.08 11.63C7.69 12.2 7.35 12.79 7.04 13.39C6.72 14 6.46 14.61 6.27 15.23C6.07 15.84 5.93 16.45 5.85 17.04C5.84 17.22 5.83 17.39 5.83 17.57H5.93Z" />
-                            </svg>
-                        </div>
+                            </div>
                         <div
                             class="absolute -top-8 -right-8 w-24 h-24 bg-emerald-500 dark:bg-emerald-600 rounded-full opacity-80 animate-bounce">
                         </div>
@@ -390,13 +332,6 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-violet-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Tailored Projects</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Custom projects perfectly aligned with
                         your course content and current skill level for optimal learning.</p>
@@ -404,16 +339,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-violet-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                            </path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                    </div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Complete Blueprint</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Detailed project structure with
                         recommended tools, technologies, and step-by-step implementation guidance.</p>
@@ -421,14 +346,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-violet-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9.663 17h4.673M12 3v1m6.364-.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
-                            </path>
-                        </svg>
-                    </div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Educational Focus</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Projects designed specifically to
                         reinforce key concepts and promote skill development in your field.</p>
@@ -436,13 +353,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-violet-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M19.22 4C19.5 4 19.75 4 19.96 4.05C20.13 5.44 19.94 7.09 19.39 8.89L14.89 18.96C11.14 20.9 7.11 21.5 3.85 20.24C3.63 20.15 3.39 20.03 3.17 19.87C2.94 19.7 2.76 19.47 2.66 19.16C1.4 15.9 2 11.87 3.94 8.12L14.01 3.62C15.81 3.07 17.46 2.88 18.85 3.05C18.89 3.26 18.89 3.51 18.89 3.79C18.89 3.79 18.89 3.9 18.89 4M5.93 17.57C7.16 17.91 8.4 17.93 9.63 17.64C10.19 17.5 10.76 17.3 11.32 17.05C12.47 16.5 13.53 15.77 14.5 14.91C15.46 14.05 16.32 13.08 17.06 12.02C17.47 11.37 17.84 10.67 18.16 9.93C18.79 8.4 19.16 6.87 19.22 5.43C19.22 5.43 19.22 5.32 19.22 5.21C19.22 5.1 19.22 5 19.22 4.89C17.78 4.95 16.25 5.32 14.72 5.95C14.5 6.05 14.29 6.15 14.08 6.26C13.87 6.37 13.67 6.48 13.5 6.58C13.31 6.68 13.14 6.78 12.97 6.89C12.8 7 12.63 7.1 12.47 7.21C12.3 7.33 12.14 7.44 12 7.56C11.83 7.68 11.67 7.81 11.5 7.93C11.34 8.05 11.18 8.17 11.03 8.31C10.87 8.44 10.72 8.58 10.57 8.72C10.41 8.85 10.27 9 10.12 9.15C9.97 9.3 9.83 9.44 9.67 9.59C9.54 9.75 9.41 9.89 9.27 10.05C8.85 10.56 8.44 11.09 8.08 11.63C7.69 12.2 7.35 12.79 7.04 13.39C6.72 14 6.46 14.61 6.27 15.23C6.07 15.84 5.93 16.45 5.85 17.04C5.84 17.22 5.83 17.39 5.83 17.57H5.93Z" />
-                        </svg>
-                    </div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Download Ready</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Export project details with one click
                         to PDF, Markdown, or directly to your GitHub repository.</p>
@@ -450,13 +360,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-violet-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                        </svg>
-                    </div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Progress Tracking</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Monitor your project completion and
                         skill development with built-in progress indicators.</p>
@@ -464,14 +367,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-14 h-14 bg-violet-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
-                            </path>
-                        </svg>
-                    </div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Iterative Learning</h3>
                     <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Generate variations of your project to
                         explore different approaches and deepen understanding.</p>
@@ -497,7 +392,6 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🐍</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Python</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Flask</span>
@@ -508,7 +402,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">💻</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">OOP</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Java</span>
@@ -519,7 +412,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🗃️</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">DBMS</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">SQL</span>
@@ -530,7 +422,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🏗️</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Software Engineering</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">CI/CD</span>
@@ -541,7 +432,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🤖</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Machine Learning</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">TensorFlow</span>
@@ -552,7 +442,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📊</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Data Science</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Pandas</span>
@@ -563,7 +452,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🌐</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Web Development</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">React</span>
@@ -574,7 +462,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📱</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Mobile Development</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Flutter</span>
@@ -585,7 +472,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🧠</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Data Structures & Algorithms</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Sorting</span>
@@ -596,7 +482,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">☁️</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Cloud Computing</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">AWS</span>
@@ -607,7 +492,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🔐</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Cybersecurity</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Encryption</span>
@@ -618,7 +502,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">⚙️</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">DevOps</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">CI/CD</span>
@@ -629,7 +512,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🤖</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">AI & Deep Learning</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">TensorFlow</span>
@@ -640,7 +522,6 @@
 
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🎮</div>
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Game Development</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Unity</span>
@@ -677,20 +558,20 @@
                             <select id="courseSelect"
                                 class="w-full h-12 px-4 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-white shadow-sm hover:border-violet-400 dark:hover:border-violet-500 focus:border-violet-500 dark:focus:border-violet-400 focus:outline-none transition-colors duration-200">
                                 <option value="" disabled selected>Choose your course</option>
-                                <option value="python">🐍 Python</option>
-                                <option value="oop">💻 OOP</option>
-                                <option value="dbms">🗃️ DBMS</option>
-                                <option value="software-engineering">🏗️ Software Engineering</option>
-                                <option value="machine-learning">🤖 Machine Learning</option>
-                                <option value="data-science">📊 Data Science</option>
-                                <option value="web-dev">🌐 Web Development</option>
-                                <option value="mobile-dev">📱 Mobile Development</option>
-                                <option value="dsa">🧠 Data Structures & Algorithms</option>
-                                <option value="cloud-computing">☁️ Cloud Computing</option>
-                                <option value="cybersecurity">🔐 Cybersecurity</option>
-                                <option value="devops">⚙️ DevOps</option>
-                                <option value="ai-and-deep-learning">⚙️ AI and Deep Learning</option>
-                                <option value="game-dev">🎮 Game Development</option>
+                                <option value="python">Python</option>
+                                <option value="oop">OOP</option>
+                                <option value="dbms">DBMS</option>
+                                <option value="software-engineering">Software Engineering</option>
+                                <option value="machine-learning">Machine Learning</option>
+                                <option value="data-science">Data Science</option>
+                                <option value="web-dev">Web Development</option>
+                                <option value="mobile-dev">Mobile Development</option>
+                                <option value="dsa">Data Structures & Algorithms</option>
+                                <option value="cloud-computing">Cloud Computing</option>
+                                <option value="cybersecurity">Cybersecurity</option>
+                                <option value="devops">DevOps</option>
+                                <option value="ai-and-deep-learning">AI and Deep Learning</option>
+                                <option value="game-dev">Game Development</option>
                             </select>
                         </div>
 
@@ -708,21 +589,8 @@
                         <!-- Generator Button (new) -->
                         <button id="generateBtn"
                             class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span class="btn-text">Generate Project</span>
-                            <div class="spinner hidden">
-                                <svg class="text-white" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                    </path>
-                                </svg>
-                            </div>
-                        </button>
+                            </button>
                     </div>
 
                     <!-- Project Loader -->
@@ -744,12 +612,7 @@
                                     <div class="absolute inset-0 flex items-center justify-center">
                                         <div
                                             class="w-12 h-12 bg-violet-500 rounded-full flex items-center justify-center loader-pulse">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                            </svg>
-                                        </div>
+                                            </div>
                                     </div>
 
                                     <!-- Floating particles -->
@@ -791,12 +654,7 @@
                                     class="loading-step flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 transition-all duration-300">
                                     <div
                                         class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-300">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9.663 17h4.673M12 3v1m6.364-.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
-                                            </path>
-                                        </svg>
-                                    </div>
+                                        </div>
                                     <div class="flex-1">
                                         <p
                                             class="font-medium text-slate-600 dark:text-slate-400 transition-colors duration-300">
@@ -808,11 +666,7 @@
                                     class="loading-step flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 transition-all duration-300">
                                     <div
                                         class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-300">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                        </svg>
-                                    </div>
+                                        </div>
                                     <div class="flex-1">
                                         <p
                                             class="font-medium text-slate-600 dark:text-slate-400 transition-colors duration-300">
@@ -824,11 +678,7 @@
                                     class="loading-step flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 transition-all duration-300">
                                     <div
                                         class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-300">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                        </svg>
-                                    </div>
+                                        </div>
                                     <div class="flex-1">
                                         <p
                                             class="font-medium text-slate-600 dark:text-slate-400 transition-colors duration-300">
@@ -840,11 +690,7 @@
                                     class="loading-step flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 transition-all duration-300">
                                     <div
                                         class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-300">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M19.22 4C19.5 4 19.75 4 19.96 4.05C20.13 5.44 19.94 7.09 19.39 8.89L14.89 18.96C11.14 20.9 7.11 21.5 3.85 20.24C3.63 20.15 3.39 20.03 3.17 19.87C2.94 19.7 2.76 19.47 2.66 19.16C1.4 15.9 2 11.87 3.94 8.12L14.01 3.62C15.81 3.07 17.46 2.88 18.85 3.05C18.89 3.26 18.89 3.51 18.89 3.79C18.89 3.79 18.89 3.9 18.89 4M5.93 17.57C7.16 17.91 8.4 17.93 9.63 17.64C10.19 17.5 10.76 17.3 11.32 17.05C12.47 16.5 13.53 15.77 14.5 14.91C15.46 14.05 16.32 13.08 17.06 12.02C17.47 11.37 17.84 10.67 18.16 9.93C18.79 8.4 19.16 6.87 19.22 5.43C19.22 5.43 19.22 5.32 19.22 5.21C19.22 5.1 19.22 5 19.22 4.89C17.78 4.95 16.25 5.32 14.72 5.95C14.5 6.05 14.29 6.15 14.08 6.26C13.87 6.37 13.67 6.48 13.5 6.58C13.31 6.68 13.14 6.78 12.97 6.89C12.8 7 12.63 7.1 12.47 7.21C12.3 7.33 12.14 7.44 12 7.56C11.83 7.68 11.67 7.81 11.5 7.93C11.34 8.05 11.18 8.17 11.03 8.31C10.87 8.44 10.72 8.58 10.57 8.72C10.41 8.85 10.27 9 10.12 9.15C9.97 9.3 9.83 9.44 9.67 9.59C9.54 9.75 9.41 9.89 9.27 10.05C8.85 10.56 8.44 11.09 8.08 11.63C7.69 12.2 7.35 12.79 7.04 13.39C6.72 14 6.46 14.61 6.27 15.23C6.07 15.84 5.93 16.45 5.85 17.04C5.84 17.22 5.83 17.39 5.83 17.57H5.93Z" />
-                                        </svg>
-                                    </div>
+                                        </div>
                                     <div class="flex-1">
                                         <p
                                             class="font-medium text-slate-600 dark:text-slate-400 transition-colors duration-300">
@@ -857,14 +703,6 @@
                             <div
                                 class="bg-violet-50 dark:bg-violet-900/20 rounded-lg p-4 border border-violet-200 dark:border-violet-800">
                                 <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-8 h-8 bg-violet-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                        </svg>
-                                    </div>
                                     <div>
                                         <h4 class="font-semibold text-violet-700 dark:text-violet-300 mb-1">Did you
                                             know?</h4>
@@ -890,11 +728,6 @@
 
         <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
             <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                </svg>
                 Tools & Technologies
             </h4>
             <div id="tools" class="flex flex-wrap gap-2 overflow-x-auto"></div>
@@ -902,12 +735,6 @@
 
         <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
             <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
-                    </path>
-                </svg>
                 File Structure
             </h4>
             <pre id="fileStructure"
@@ -917,11 +744,6 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
                 <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
                     Learning Outcomes
                 </h4>
                 <ul id="learningOutcomes" class="space-y-2 text-base"></ul>
@@ -929,11 +751,6 @@
 
             <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
                 <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                    <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
                     Build Steps
                 </h4>
                 <ol id="buildSteps" class="space-y-2 text-base"></ol>
@@ -942,12 +759,6 @@
 
         <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
             <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                    </path>
-                </svg>
                 External Resources
             </h4>
             <div id="apiLinks" class="space-y-2 text-base break-words overflow-x-auto"></div>
@@ -963,22 +774,12 @@
             <!-- Copy Button -->
             <button id="copyBtn"
                 class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3">
-                    </path>
-                </svg>
                 Copy to Clipboard
             </button>
 
             <!-- Download Button -->
             <button id="downloadBtn"
                 class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                    </path>
-                </svg>
                 Download Project
             </button>
 
@@ -986,7 +787,7 @@
             <button id="save-project-btn"
                 class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50"
                 style="display: block;">
-                💾 Save Project
+                Save Project
             </button>
         </div>
     </div>
@@ -1015,32 +816,17 @@
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                     <h3 class="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-4 flex items-center gap-3">
-                        🚧 In Development
+                        In Development
                     </h3>
-                    <p class="text-slate-600 dark:text-slate-300 italic">No active development — current version is stable.</p>
+                    <p class="text-slate-600 dark:text-slate-300 italic">No active development. Current version is stable.</p>
                     <!-- <ul class="space-y-4 text-slate-700 dark:text-slate-300"> -->
                         <!-- <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-0.5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span>User Profiles & Project History</span>
                         </li> -->
                         <!-- <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-0.5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span>GitHub Integration & Auto-Setup</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-0.5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span>Project Rating & Feedback System</span>
                         </li>
                     </ul> -->
@@ -1049,48 +835,23 @@
                 <div
                     class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                     <h3 class="text-2xl font-bold text-violet-600 dark:text-violet-400 mb-4 flex items-center gap-3">
-                        ✨ Coming Soon
+                        Coming Soon
                     </h3>
                     <ul class="space-y-4 text-slate-700 dark:text-slate-300">
                         
                         <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-0.5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span>Project Template Export (Boilerplate Code)</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-0.5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span>AI Mentor (v2) - Code Assistance</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-0.5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span>GitHub Integration & Auto-Setup</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-0.5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span>Project Rating & Feedback System</span>
                         </li>
                         <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 text-violet-600 dark:text-violet-400 flex-shrink-0 mt-0.5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
                             <span>Community Feedback & Collaboration</span>
                         </li>
                     </ul>
@@ -1125,11 +886,7 @@
                     <a href="#generator"
                         class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
                         Start Your Project Now
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                        </svg>
-                    </a>
+                        </a>
                 </div>
             </div>
         </div>
@@ -1141,13 +898,6 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div class="space-y-6">
                     <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 bg-violet-500 rounded-xl flex items-center justify-center shadow-lg">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M13.13 22.19L11.5 18.36C13.07 17.78 14.54 17 15.9 16.09L13.13 22.19M5.64 12.5L1.81 10.87L7.91 8.1C7 9.46 6.22 10.93 5.64 12.5M19.22 4C19.5 4 19.75 4 19.96 4.05C20.13 5.44 19.94 7.09 19.39 8.89L14.89 18.96C11.14 20.9 7.11 21.5 3.85 20.24C3.63 20.15 3.39 20.03 3.17 19.87C2.94 19.7 2.76 19.47 2.66 19.16C1.4 15.9 2 11.87 3.94 8.12L14.01 3.62C15.81 3.07 17.46 2.88 18.85 3.05C18.89 3.26 18.89 3.51 18.89 3.79C18.89 3.79 18.89 3.9 18.89 4M5.93 17.57C7.16 17.91 8.4 17.93 9.63 17.64C10.19 17.5 10.76 17.3 11.32 17.05C12.47 16.5 13.53 15.77 14.5 14.91C15.46 14.05 16.32 13.08 17.06 12.02C17.47 11.37 17.84 10.67 18.16 9.93C18.79 8.4 19.16 6.87 19.22 5.43C19.22 5.43 19.22 5.32 19.22 5.21C19.22 5.1 19.22 5 19.22 4.89C17.78 4.95 16.25 5.32 14.72 5.95C14.5 6.05 14.29 6.15 14.08 6.26C13.87 6.37 13.67 6.48 13.5 6.58C13.31 6.68 13.14 6.78 12.97 6.89C12.8 7 12.63 7.1 12.47 7.21C12.3 7.33 12.14 7.44 12 7.56C11.83 7.68 11.67 7.81 11.5 7.93C11.34 8.05 11.18 8.17 11.03 8.31C10.87 8.44 10.72 8.58 10.57 8.72C10.41 8.85 10.27 9 10.12 9.15C9.97 9.3 9.83 9.44 9.67 9.59C9.54 9.75 9.41 9.89 9.27 10.05C8.85 10.56 8.44 11.09 8.08 11.63C7.69 12.2 7.35 12.79 7.04 13.39C6.72 14 6.46 14.61 6.27 15.23C6.07 15.84 5.93 16.45 5.85 17.04C5.84 17.22 5.83 17.39 5.83 17.57H5.93Z" />
-                            </svg>
-                        </div>
                         <span class="text-2xl font-bold">LaunchMate</span>
                     </div>
                     <p class="text-slate-400 dark:text-slate-500 leading-relaxed">
@@ -1158,28 +908,18 @@
 
                 <div class="space-y-6">
                     <h3 class="text-xl font-bold">Connect With Us</h3>
-                    <div class="flex gap-4">
+                    <div class="flex flex-col gap-2">
                         <a href="https://github.com/shawalkhan09" target="_blank" rel="noopener noreferrer"
-                            class="w-12 h-12 bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 dark:hover:bg-slate-800 rounded-xl flex items-center justify-center transition-colors duration-200">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            class="text-slate-400 dark:text-slate-500 hover:text-white transition-colors duration-200">
+                            GitHub
                         </a>
                         <a href="https://linkedin.com/in/shawalkhan09" target="_blank" rel="noopener noreferrer"
-                            class="w-12 h-12 bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 dark:hover:bg-slate-800 rounded-xl flex items-center justify-center transition-colors duration-200">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                            </svg>
+                            class="text-slate-400 dark:text-slate-500 hover:text-white transition-colors duration-200">
+                            LinkedIn
                         </a>
                         <a href="https://instagram.com/salarzai_09" target="_blank" rel="noopener noreferrer"
-                            class="w-12 h-12 bg-slate-800 dark:bg-slate-900 hover:bg-slate-700 dark:hover:bg-slate-800 rounded-xl flex items-center justify-center transition-colors duration-200">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M7.75 2C5.127 2 3 4.127 3 6.75v10.5C3 19.873 5.127 22 7.75 22h8.5C18.873 22 21 19.873 21 17.25V6.75C21 4.127 18.873 2 16.25 2h-8.5zM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5zm4.75-.25a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z" />
-                            </svg>
+                            class="text-slate-400 dark:text-slate-500 hover:text-white transition-colors duration-200">
+                            Instagram
                         </a>
                     </div>
                 </div>
@@ -1187,12 +927,7 @@
                 <div class="space-y-6">
                     <h3 class="text-xl font-bold">Contact</h3>
                     <a href="mailto:hello@launchmate.dev"
-                        class="flex items-center gap-3 text-slate-400 dark:text-slate-500 hover:text-white transition-colors duration-200">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
+                        class="text-slate-400 dark:text-slate-500 hover:text-white transition-colors duration-200">
                         hello@launchmate.dev
                     </a>
                 </div>

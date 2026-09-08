@@ -132,14 +132,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Helper to add loading state to buttons
     function setLoadingState(button, isLoading) {
+        const label = button.querySelector('.btn-text');
         if (isLoading) {
             button.classList.add('loading', 'opacity-75', 'cursor-not-allowed');
-            button.querySelector('.btn-text')?.classList.add('hidden');
-            button.querySelector('.spinner')?.classList.remove('hidden');
+            if (label) {
+                label.dataset.originalText = label.textContent;
+                label.textContent = 'Generating...';
+            }
         } else {
             button.classList.remove('loading', 'opacity-75', 'cursor-not-allowed');
-            button.querySelector('.btn-text')?.classList.remove('hidden');
-            button.querySelector('.spinner')?.classList.add('hidden');
+            if (label && label.dataset.originalText) {
+                label.textContent = label.dataset.originalText;
+            }
         }
     }
 
@@ -220,11 +224,6 @@ document.addEventListener('DOMContentLoaded', function () {
             stepElement.classList.add('bg-emerald-50', 'dark:bg-emerald-900/20');
             stepIcon.classList.add('bg-emerald-500', 'text-white');
             stepText.classList.add('text-emerald-700', 'dark:text-emerald-300');
-            stepIcon.innerHTML = `
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-            `;
 
             // Remove bouncing dots
             const dots = stepElement.querySelector('.bouncing-dots');
@@ -372,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 // Try to copy to clipboard
                 await navigator.clipboard.writeText(content);
-                showToast('✨ Project content copied to clipboard!', 'success');
+                showToast('Project content copied to clipboard!', 'success');
             } catch (err) {
                 console.error('Copy failed:', err);
                 // Fallback for browsers that don't support clipboard API
@@ -385,9 +384,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     textarea.select();
                     document.execCommand('copy');
                     document.body.removeChild(textarea);
-                    showToast('✨ Project content copied to clipboard!', 'success');
+                    showToast('Project content copied to clipboard!', 'success');
                 } catch (fallbackErr) {
-                    showToast('❌ Failed to copy content to clipboard', 'error');
+                    showToast('Failed to copy content to clipboard', 'error');
                 }
             } finally {
                 // Reset button state
@@ -418,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update file structure
         elements.fileStructure.textContent = Array.isArray(data.file_structure)
             ? data.file_structure.join('\n')
-            : data.file_structure || '—';
+            : data.file_structure || 'N/A';
 
         // Update learning outcomes
         updateList(elements.learningOutcomes, data.learning_outcomes);
@@ -430,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateLinks(elements.apiLinks, data.external_resources);
 
         // Update estimated time
-        elements.estimatedTime.textContent = data.estimated_time || '—';
+        elements.estimatedTime.textContent = data.estimated_time || 'N/A';
     }
 
     function updateList(container, items) {
@@ -438,17 +437,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (Array.isArray(items) && items.length > 0) {
             items.forEach(item => {
                 const li = document.createElement('li');
-                const icon = document.createElement('span');
-                icon.innerHTML = container.id === 'buildSteps' ? '🔨' : '✨';
-                icon.className = 'text-lg text-primary';
-                li.className = 'flex items-center gap-3 hover:translate-x-1 transition-all duration-300';
-                li.appendChild(icon);
+                li.className = 'hover:translate-x-1 transition-all duration-300';
                 li.appendChild(document.createTextNode(item));
                 container.appendChild(li);
             });
         } else {
             const li = document.createElement('li');
-            li.textContent = '—';
+            li.textContent = 'N/A';
             container.appendChild(li);
         }
     }
@@ -463,19 +458,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
             links.forEach(link => {
                 const url = link.url || link;
-                // AI-generated content — only allow http(s) links, never javascript:/data: etc.
+                // AI-generated content: only allow http(s) links, never javascript:/data: etc.
                 if (!/^https?:\/\//i.test(url)) return;
 
                 const li = document.createElement('li');
                 const a = document.createElement('a');
-                const icon = document.createElement('span');
-                icon.innerHTML = '🔗';
-                icon.className = 'text-lg';
                 a.href = url;
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
-                a.className = 'text-primary hover:text-primary-light transition-all duration-300 flex items-center gap-3 hover:translate-x-1';
-                a.appendChild(icon);
+                a.className = 'text-primary hover:text-primary-light transition-all duration-300 hover:translate-x-1 inline-block';
                 a.appendChild(document.createTextNode(link.name || link));
 
                 li.appendChild(a);
@@ -484,7 +475,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             container.appendChild(ul);
         } else {
-            container.textContent = '—';
+            container.textContent = 'N/A';
         }
     }
 
@@ -516,7 +507,7 @@ ${elements.estimatedTime.textContent}
 
 ---
 
-📝 This is an AI-generated project suggestion from LaunchMate. Use it as inspiration, modify it freely, and make it yours.
+This is an AI-generated project suggestion from LaunchMate. Use it as inspiration, modify it freely, and make it yours.
 
 `;
     }
@@ -634,7 +625,7 @@ ${elements.estimatedTime.textContent}
     document.getElementById('save-project-btn').onclick = async (e) => {
     const btn = e.currentTarget;
 
-    // 🛡 Prevent multiple clicks
+    // Prevent multiple clicks
     btn.disabled = true;
     btn.textContent = "Saving...";
 
@@ -657,7 +648,7 @@ ${elements.estimatedTime.textContent}
     const bonus = document.getElementById('bonus')?.textContent.trim() || "";
 
     if (!title || !course || !description) {
-        showToast("❌ Missing essential project info.", "error");
+        showToast("Missing essential project info.", "error");
         btn.disabled = false;
         btn.textContent = "Save Project";
         return;
@@ -685,23 +676,23 @@ ${elements.estimatedTime.textContent}
         const result = await response.json();
 
         if (response.ok) {
-            console.log("✅ response.ok is TRUE");
+            console.log("response.ok is TRUE");
             console.log("Returned result:", result);
 
             const msg = result.message?.includes("already")
-                ? "ℹ️ Project already exists!"
-                : "✅ Project saved successfully!";
+                ? "Project already exists!"
+                : "Project saved successfully!";
             showToast(msg, "success");
 
             btn.textContent = "Saved!";
         } else {
-            showToast(`❌ Failed to save project: ${result.error || "Unknown error"}`, "error");
+            showToast(`Failed to save project: ${result.error || "Unknown error"}`, "error");
             btn.textContent = "Save Project";
             btn.disabled = false;
         }
     } catch (err) {
         console.error("Save error:", err);
-        showToast("❌ Error saving project.", "error");
+        showToast("Error saving project.", "error");
         btn.disabled = false;
         btn.textContent = "Save Project";
     }

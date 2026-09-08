@@ -19,12 +19,12 @@ def get_fallback_project(course, difficulty):
     key = f"{course}:{difficulty}".lower()
     return fallback_projects.get(key)
 
-# 🎯 Individual course-specific prompt templates
+# Individual course-specific prompt templates
 
 python_prompt = """
 You are an expert AI that specializes in generating **unique, beginner-friendly, and practical Python project ideas**. 
 
-🎯 Context:
+Context:
 - Course: Python Programming
 - Audience: University students looking to build hands-on skills
 - Difficulty Level: {difficulty}
@@ -32,14 +32,14 @@ You are an expert AI that specializes in generating **unique, beginner-friendly,
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Suggest a creative project idea that solves a real-world or educational problem
 - Ensure it is appropriate for the specified difficulty level
 - Leverage Python’s strengths (e.g., simplicity, libraries, scripting power)
 - Incorporate the twist and platform where relevant
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -56,7 +56,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 oop_prompt = """
 You are an expert AI that specializes in generating **hands-on, object-oriented programming project ideas** for university students.
 
-🎯 Context:
+Context:
 - Course: Object-Oriented Programming (OOP)
 - Audience: Students learning to apply OOP principles practically
 - Difficulty Level: {difficulty}
@@ -64,14 +64,14 @@ You are an expert AI that specializes in generating **hands-on, object-oriented 
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Design a project that reinforces OOP fundamentals: classes, objects, inheritance, polymorphism, encapsulation, and abstraction
 - Ensure the project includes multiple interacting classes with realistic behaviors and relationships
 - Make it engaging and appropriately challenging for the specified difficulty
 - Incorporate the twist and platform where relevant
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -88,7 +88,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 dbms_prompt = """
 You are an expert AI that specializes in generating **practical, real-world DBMS project ideas** for university students.
 
-🎯 Context:
+Context:
 - Course: Database Management Systems (DBMS)
 - Audience: Students learning relational databases and data modeling
 - Difficulty Level: {difficulty}
@@ -96,14 +96,14 @@ You are an expert AI that specializes in generating **practical, real-world DBMS
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Design a project that involves database design using ER models and conversion to relational schema
 - Include CRUD operations, relational queries (SQL), and at least one form of constraint or normalization concept
 - Make it realistic and relatable (e.g., inventory system, course registration, health records)
 - Incorporate the twist and platform where relevant (e.g., web-based SQL dashboard, mobile DB viewer)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -121,7 +121,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 se_prompt = """
 You are an expert AI that specializes in generating **software engineering project ideas** that simulate real-world product development processes.
 
-🎯 Context:
+Context:
 - Course: Software Engineering
 - Audience: Students learning SDLC, modular design, teamwork, and quality assurance
 - Difficulty Level: {difficulty}
@@ -129,14 +129,14 @@ You are an expert AI that specializes in generating **software engineering proje
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Propose a full-cycle software project that reflects planning, requirement analysis, design, implementation, testing, and maintenance
 - Emphasize good software practices (modularity, version control, documentation, testing)
 - The project should involve multiple modules or components working together
 - Incorporate the twist and platform to make it more creative or constrained
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -154,7 +154,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 ml_prompt = """
 You are an expert AI that specializes in generating **realistic and educational machine learning project ideas** for university students.
 
-🎯 Context:
+Context:
 - Course: Machine Learning
 - Audience: Students who have learned basic ML concepts and want to apply them practically
 - Difficulty Level: {difficulty}
@@ -162,15 +162,15 @@ You are an expert AI that specializes in generating **realistic and educational 
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Suggest a project that uses supervised, unsupervised, or basic deep learning techniques
 - Emphasize key ML steps: data collection/preprocessing, model training, evaluation, and performance improvement
 - Focus on interpretability, real-world datasets, and ethical use of AI when relevant
 - Avoid overly complex models (e.g., transformers) unless appropriate for difficulty
 - Incorporate the twist and platform (e.g., mobile ML app, web-based dashboard, CLI model explorer)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -188,7 +188,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 ds_prompt = """
 You are an expert AI that specializes in generating **data science project ideas** that help students master real-world data analysis and storytelling.
 
-🎯 Context:
+Context:
 - Course: Data Science
 - Audience: University students learning data preprocessing, analysis, and visualization
 - Difficulty Level: {difficulty}
@@ -196,15 +196,15 @@ You are an expert AI that specializes in generating **data science project ideas
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Propose a project that involves sourcing or using a public dataset
 - Emphasize data cleaning, exploratory data analysis (EDA), and insight generation
 - Include meaningful visualizations and data storytelling aspects
 - Optionally, include simple ML or statistical modeling (if difficulty allows)
-- Incorporate the twist and platform — e.g., interactive dashboard, report generator, or terminal-based data explorer
+- Incorporate the twist and platform (e.g., interactive dashboard, report generator, or terminal-based data explorer)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -222,7 +222,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 webdev_prompt = """
 You are an expert AI that specializes in generating **creative and practical web development project ideas** for university students.
 
-🎯 Context:
+Context:
 - Course: Web Development
 - Audience: Students learning to build full-stack or front-end web applications
 - Difficulty Level: {difficulty}
@@ -230,15 +230,15 @@ You are an expert AI that specializes in generating **creative and practical web
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Suggest a project that requires building a responsive and interactive website or web app
 - Frontend could use HTML, CSS, JS, React, etc.
 - Backend (if relevant) could use Node.js, Django, Flask, etc.
 - Emphasize good UI/UX, routing, form handling, APIs, or authentication (depending on level)
 - Incorporate the twist and platform (e.g., progressive web app, offline mode, mobile-first UI)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -256,7 +256,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 mobiledev_prompt = """
 You are an expert AI that specializes in generating **hands-on mobile app development project ideas** for university students.
 
-🎯 Context:
+Context:
 - Course: Mobile App Development
 - Audience: Students learning to build cross-platform or native mobile apps
 - Difficulty Level: {difficulty}
@@ -264,15 +264,15 @@ You are an expert AI that specializes in generating **hands-on mobile app develo
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Propose a mobile app that solves a real-world or educational problem
 - It should involve multiple screens, local storage (SQLite/shared prefs), and user interaction
 - May use Flutter, React Native, Swift, or Kotlin depending on the platform
 - Emphasize good UX, offline capability, and device features (camera, notifications, GPS, etc.)
 - Incorporate the twist and platform appropriately (e.g., works offline, gamified, dashboard view)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -290,7 +290,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 dsa_prompt = """
 You are an expert AI that specializes in generating **practical and educational DSA (Data Structures and Algorithms) project ideas** for university students.
 
-🎯 Context:
+Context:
 - Course: Data Structures and Algorithms (DSA)
 - Audience: Students learning to implement and apply core data structures and algorithms
 - Difficulty Level: {difficulty}
@@ -298,15 +298,15 @@ You are an expert AI that specializes in generating **practical and educational 
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Design a project that requires students to implement key data structures (e.g., stacks, trees, graphs, hash tables)
 - The project must include at least one core algorithm (e.g., sorting, searching, traversal, dynamic programming)
 - Emphasize hands-on understanding, logic building, and optional visualization of execution
 - The project may be applied in games, simulations, problem solvers, or productivity tools
 - Incorporate the twist and platform (e.g., CLI visualizer, web-based sorting app, mobile pathfinder)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -324,7 +324,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 cloud_prompt = """
 You are an expert AI that specializes in generating **cloud computing project ideas** that help students gain hands-on experience with modern cloud platforms.
 
-🎯 Context:
+Context:
 - Course: Cloud Computing
 - Audience: University students learning deployment, scalability, and cloud-native services
 - Difficulty Level: {difficulty}
@@ -332,15 +332,15 @@ You are an expert AI that specializes in generating **cloud computing project id
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Design a project that involves deploying an application using cloud platforms (AWS, Azure, GCP, etc.)
 - Include core cloud concepts like storage (S3, Blob), serverless functions, databases, auto-scaling, or monitoring
 - Can involve building or migrating a web/mobile app to the cloud
 - Emphasize CI/CD pipelines, infrastructure-as-code, or containerization if relevant
 - Incorporate the twist and platform appropriately (e.g., works offline but syncs to cloud, cost-optimized, deploys with one click)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -358,7 +358,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 cyber_prompt = """
 You are an expert AI that specializes in generating **cybersecurity project ideas** for university students learning ethical hacking and secure system design.
 
-🎯 Context:
+Context:
 - Course: Cybersecurity
 - Audience: Students learning about vulnerabilities, encryption, authentication, and secure systems
 - Difficulty Level: {difficulty}
@@ -366,15 +366,15 @@ You are an expert AI that specializes in generating **cybersecurity project idea
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Design a project that explores key cybersecurity principles such as password hashing, encryption/decryption, threat modeling, or secure authentication
 - Can simulate security tools (e.g., password strength checker, phishing detector, encrypted chat)
 - May involve building secure systems or demonstrating known vulnerabilities in a safe environment
 - Encourage ethical behavior and defensive thinking
 - Incorporate the twist and platform appropriately (e.g., CLI-based pentest tool, browser extension, Android app with secure login)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -392,7 +392,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 devops_prompt = """
 You are an expert AI that specializes in generating **DevOps project ideas** that help students automate, monitor, and manage modern software delivery systems.
 
-🎯 Context:
+Context:
 - Course: DevOps
 - Audience: University students learning about CI/CD, automation, and infrastructure management
 - Difficulty Level: {difficulty}
@@ -400,15 +400,15 @@ You are an expert AI that specializes in generating **DevOps project ideas** tha
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Design a project that focuses on automating software delivery pipelines using tools like GitHub Actions, Jenkins, or GitLab CI
 - Encourage use of Docker, Kubernetes, or Terraform for deployment and infrastructure management
 - Include monitoring/logging (e.g., Prometheus, Grafana), automated testing, and deployment workflows
 - The project should reflect a complete lifecycle from development to deployment
 - Incorporate the twist and platform appropriately (e.g., deploy to cloud via CI/CD, automate security scans, show real-time build status)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -426,7 +426,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 ai_prompt = """
 You are an expert AI that specializes in generating **AI and Deep Learning project ideas** that help university students build intelligent, model-driven applications.
 
-🎯 Context:
+Context:
 - Course: AI and Deep Learning
 - Audience: Students learning to build neural networks, apply pre-trained models, and understand deep learning architectures
 - Difficulty Level: {difficulty}
@@ -434,15 +434,15 @@ You are an expert AI that specializes in generating **AI and Deep Learning proje
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Design a project that uses deep learning models for tasks like image recognition, sentiment analysis, object detection, or sequence prediction
 - The project can involve training from scratch or fine-tuning pre-trained models (e.g., CNNs, RNNs, Transformers)
 - Include essential steps: dataset handling, model building, evaluation, and result interpretation
 - Consider ethical implications and efficiency trade-offs
 - Incorporate the twist and platform appropriately (e.g., voice-based mobile app, real-time detection in browser, offline image classifier)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -460,7 +460,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 gamedev_prompt = """
 You are an expert AI that specializes in generating **game development project ideas** for students learning to build interactive, logic-driven applications.
 
-🎯 Context:
+Context:
 - Course: Game Development
 - Audience: University students learning game mechanics, design, and implementation
 - Difficulty Level: {difficulty}
@@ -468,15 +468,15 @@ You are an expert AI that specializes in generating **game development project i
 - Twist: {twist}
 - Platform: {platform}
 
-🧠 Instructions:
+Instructions:
 - Suggest a project that involves designing and coding a playable game with meaningful user interaction
 - Focus on mechanics like scoring, levels, physics, AI behavior, or player progression
 - Can use engines like Unity, Unreal, Godot, or simple HTML5/canvas for 2D games
 - Emphasize code structure, game loop, asset management, and performance
 - Incorporate the twist and platform creatively (e.g., gamify a real-world process, make it multiplayer, add accessibility)
 
-✅ Output Format:
-Respond ONLY with **valid JSON** in the following structure — no explanations, comments, or markdown.
+Output Format:
+Respond ONLY with **valid JSON** in the following structure, no explanations, comments, or markdown. Do not use em dashes anywhere in the text fields; use commas, periods, or parentheses instead.
 
 {{
   "title": "...",
@@ -492,7 +492,7 @@ Respond ONLY with **valid JSON** in the following structure — no explanations,
 """
 
 
-# 🔑 Map course names to prompt variable names
+# Map course names to prompt variable names
 course_prompt_map = {
     "python": "python_prompt",
     "oop": "oop_prompt",
@@ -510,7 +510,7 @@ course_prompt_map = {
     "game-dev": "gamedev_prompt"
 }
 
-# 🧠 Prompt fetcher with variable injection
+# Prompt fetcher with variable injection
 def get_prompt(course, difficulty, theme, twist, platform):
     course = course.strip().lower().replace("_", "-")
     course_key = course_prompt_map.get(course)
@@ -530,7 +530,7 @@ def get_prompt(course, difficulty, theme, twist, platform):
         platform=platform
     )
 
-# 🚀 Main AI project generator
+# Main AI project generator
 def ai_generate_project(course, difficulty):
     api_key = os.getenv('GEMINI_API_KEY')
     if not api_key:
@@ -566,7 +566,7 @@ def ai_generate_project(course, difficulty):
         )
         api_response.raise_for_status()
         response = api_response.json()["candidates"][0]["content"]["parts"][0]["text"]
-        print("[🧠 AI Response Raw]:", response)
+        print("[AI Response Raw]:", response)
 
         start = response.find('{')
         end = response.rfind('}') + 1

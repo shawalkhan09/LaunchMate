@@ -4,15 +4,15 @@ import re
 def generate_readme(project, folder="saved_projects"):
     readme_content = f"""# {project['title']}
 
-## 📝 Description
+## Description
 {project['description']}
 
-## 🛠️ Tools Used
+## Tools Used
 {', '.join(project['tools'])}
 
-## 📁 File Structure
+## File Structure
 
-## 💡 Bonus Suggestion
+## Bonus Suggestion
 {project['bonus']}
 """
 

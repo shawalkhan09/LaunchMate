@@ -43,7 +43,7 @@ Useful APIs:
 {chr(10).join(project.get('api_links', []))}
 
 Estimated Time to Build:
-{project.get('estimated_time', '—')}
+{project.get('estimated_time', 'N/A')}
 """
 
 def save_project_to_file(project, folder="saved_projects"):
@@ -63,7 +63,7 @@ def save_project_to_file(project, folder="saved_projects"):
 
 def save_project(title, course, description, tags, user_id=None, project_data=None):
     if not user_id:
-        print("❌ Cannot save project — no user ID")
+        print("Cannot save project: no user ID")
         return
 
     try:
@@ -84,7 +84,7 @@ def save_project(title, course, description, tags, user_id=None, project_data=No
         }
 
         response = supabase.table("projects").insert(project_details).execute()
-        print("✅ Project saved:", response)
+        print("Project saved:", response)
     except Exception as e:
-        print("❌ Error saving project:", e)
+        print("Error saving project:", e)
 

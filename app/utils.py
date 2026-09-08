@@ -60,17 +60,17 @@ def is_valid_project(course, difficulty, project_data):
     description = normalize(project_data.get("description", ""))
     tools = [normalize(tool) for tool in project_data.get("tools", [])]
 
-    # ❌ Check forbidden keywords
+    # Check forbidden keywords
     for bad in forbidden_keywords.get(course, []):
         if bad in description:
             return False
 
-    # ✅ Check required tool overlap
+    # Check required tool overlap
     allowed = allowed_tools.get(course, [])
     if not any(tool in allowed for tool in tools):
         return False
 
-    # ❌ Forbid web projects on mobile-only courses and vice versa
+    # Forbid web projects on mobile-only courses and vice versa
     if course in allowed_platforms:
         valid_platforms = allowed_platforms[course]
         # Try to infer from description
