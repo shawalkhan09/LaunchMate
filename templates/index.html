@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>LaunchMate | AI Project Generator</title>
     <meta name="description" content="Generate unique, course-specific coding project ideas instantly using AI. Perfect for CS students, developers, and final year projects.">
     <meta name="keywords" content="AI project generator, coding project ideas, computer science projects, software engineering project ideas, Python projects, beginner coding projects, final year project ideas, student productivity tools, CS project ideas">
@@ -11,47 +12,16 @@
     <meta property="og:description" content="Launch your next coding project with AI-generated, personalized project ideas tailored to your course and skill level." />
     <meta property="og:image" content="{{ url_for('static', filename='front.jpg') }}" />
     <meta property="og:url" content="https://launchmate.example.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LaunchMate | AI Project Generator for Students" />
+    <meta name="twitter:description" content="Launch your next coding project with AI-generated, personalized project ideas tailored to your course and skill level." />
+    <meta name="twitter:image" content="{{ url_for('static', filename='front.jpg') }}" />
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='logo.svg') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
-                    },
-                    colors: {
-                        primary: '#8b5cf6',
-                        'primary-light': '#a78bfa',
-                        'primary-dark': '#7c3aed',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .dark {
-            color-scheme: dark;
-        }
-
-        * {
-            transition: all 0.3s ease;
-        }
-
-        .brand-text {
-            color: #8b5cf6;
-        }
-
-        .dark .brand-text {
-            color: #a78bfa;
-        }
-
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
 </head>
 
 <body
@@ -391,8 +361,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Python</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="python"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Python</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Flask</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Django</span>
@@ -401,8 +370,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">OOP</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="oop"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">OOP</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Java</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">C++</span>
@@ -411,8 +379,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">DBMS</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="dbms"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">DBMS</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">SQL</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">NoSQL</span>
@@ -421,8 +388,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Software Engineering</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="software-engineering"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Software Engineering</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">CI/CD</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Testing</span>
@@ -431,8 +397,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Machine Learning</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="machine-learning"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Machine Learning</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">TensorFlow</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">PyTorch</span>
@@ -441,8 +406,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Data Science</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="data-science"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Data Science</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Pandas</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Matplotlib</span>
@@ -451,8 +415,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Web Development</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="web-dev"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Web Development</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">React</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Node.js</span>
@@ -461,8 +424,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Mobile Development</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="mobile-dev"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Mobile Development</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Flutter</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">React Native</span>
@@ -471,8 +433,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Data Structures & Algorithms</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="dsa"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Data Structures & Algorithms</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Sorting</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Recursion</span>
@@ -481,8 +442,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Cloud Computing</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="cloud-computing"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Cloud Computing</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">AWS</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Azure</span>
@@ -491,8 +451,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Cybersecurity</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="cybersecurity"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Cybersecurity</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Encryption</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Network Security</span>
@@ -501,8 +460,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">DevOps</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="devops"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">DevOps</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">CI/CD</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Docker</span>
@@ -511,8 +469,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">AI & Deep Learning</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="ai-and-deep-learning"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">AI & Deep Learning</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">TensorFlow</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">PyTorch</span>
@@ -521,8 +478,7 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Game Development</h3>
+                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="game-dev"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Game Development</h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Unity</span>
                         <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Unreal</span>
@@ -784,10 +740,10 @@
             </button>
 
             <!-- Save Button -->
-            <button id="save-project-btn"
-                class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50"
-                style="display: block;">
-                Save Project
+            <button id="save-project-btn" data-logged-in="{{ 'true' if session.get('email') else 'false' }}"
+                {% if not session.get('email') %}title="Sign in to save projects"{% endif %}
+                class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg transition-all duration-300 gap-2 text-white focus:outline-none focus:ring-2 focus:ring-violet-500/50 {{ 'bg-violet-500 hover:bg-violet-600 hover:shadow-xl hover:scale-[1.02] active:scale-95' if session.get('email') else 'bg-slate-400 dark:bg-slate-600 cursor-not-allowed' }}">
+                {{ 'Save Project' if session.get('email') else 'Sign in to save' }}
             </button>
         </div>
     </div>
@@ -940,7 +896,9 @@
         </div>
     </footer>
 
-    <div id="toast-container" class="fixed bottom-4 right-4 space-y-3 z-[9999] w-full max-w-xs"></div>
+    <div id="toast-container"
+        class="fixed bottom-4 right-4 z-[9999] w-full max-w-xs flex flex-col-reverse gap-3 max-h-[calc(100vh-2rem)] overflow-hidden">
+    </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 

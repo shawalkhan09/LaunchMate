@@ -1,79 +1,3 @@
-// Skeleton Loader State Management
-let isLoading = true;
-
-function createSkeletonLoader() {
-    // Set body background for skeleton
-    document.body.style.backgroundColor = 'rgb(241, 245, 249)';
-    document.documentElement.classList.contains('dark') && (document.body.style.backgroundColor = 'rgb(15, 23, 42)');
-
-    const sections = [
-        {
-            id: 'nav-skeleton',
-            className: 'fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm',
-            height: 'h-16'
-        },
-        {
-            id: 'hero-skeleton',
-            className: 'pt-32 pb-20 px-6',
-            content: `
-                <div class="max-w-7xl mx-auto">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <div class="space-y-8 animate-pulse">
-                            <div class="h-12 bg-slate-200 dark:bg-slate-700 rounded-lg w-3/4"></div>
-                            <div class="h-8 bg-slate-200 dark:bg-slate-700 rounded-lg w-full"></div>
-                            <div class="space-y-3">
-                                <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-5/6"></div>
-                                <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-4/6"></div>
-                            </div>
-                            <div class="flex gap-4">
-                                <div class="h-12 bg-slate-200 dark:bg-slate-700 rounded-lg w-32"></div>
-                                <div class="h-12 bg-slate-200 dark:bg-slate-700 rounded-lg w-32"></div>
-                            </div>
-                        </div>
-                        <div class="hidden lg:block h-96 bg-slate-200 dark:bg-slate-700 rounded-lg animate-pulse"></div>
-                    </div>
-                </div>
-            `
-        },
-        {
-            id: 'features-skeleton',
-            className: 'py-20 px-6',
-            content: `
-                <div class="max-w-7xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-pulse">
-                        ${Array(6).fill().map(() => `
-                            <div class="p-6 rounded-2xl bg-slate-200 dark:bg-slate-700 h-48"></div>
-                        `).join('')}
-                    </div>
-                </div>
-            `
-        }
-    ];
-
-    sections.forEach(section => {
-        const sectionEl = document.createElement('section');
-        sectionEl.id = section.id;
-        sectionEl.className = `${section.className} animate-pulse`;
-        if (section.content) {
-            sectionEl.innerHTML = section.content;
-        } else if (section.height) {
-            sectionEl.className += ` ${section.height} bg-slate-200 dark:bg-slate-700`;
-        }
-        document.body.appendChild(sectionEl);
-    });
-}
-
-function removeSkeletonLoader() {
-    const skeletons = document.querySelectorAll('[id$="-skeleton"]');
-    skeletons.forEach(skeleton => {
-        skeleton.classList.add('fade-out');
-        setTimeout(() => skeleton.remove(), 300);
-    });
-}
-
-// Create skeleton loader immediately
-createSkeletonLoader();
-
 document.addEventListener('DOMContentLoaded', function () {
     
     // Theme Management
@@ -239,57 +163,41 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function startLoading() {
-        currentStep = 0;
-        progress = 0;
+    // Real generation time varies (observed ~16s, sometimes more), so this loops
+    // indefinitely and never claims completion until the response actually arrives.
+    const STEP_DURATION_MS = 2200;
 
-        const totalDuration = loadingSteps.reduce((sum, step) => sum + step.duration, 0);
+    function startLoading() {
+        currentStep = -1;
+        progress = 0;
         let elapsed = 0;
 
-        // Reset all steps
+        // Reset all steps to pending
         loadingSteps.forEach((_, index) => {
             updateLoadingStep(index, false, false);
         });
 
         loadingInterval = setInterval(() => {
             elapsed += 100;
-            const newProgress = Math.min((elapsed / totalDuration) * 100, 100);
-            progress = newProgress;
 
-            // Update progress bar
+            // Approaches but never reaches 100% while still waiting on the real response.
+            progress = 92 * (1 - Math.exp(-elapsed / 4000));
             document.getElementById('progressBar').style.width = `${progress}%`;
             document.getElementById('progressPercent').textContent = `${Math.round(progress)}%`;
 
-            // Update current step
-            let stepElapsed = 0;
-            for (let i = 0; i < loadingSteps.length; i++) {
-                stepElapsed += loadingSteps[i].duration;
-                if (elapsed <= stepElapsed) {
-                    if (currentStep !== i) {
-                        // Mark previous steps as completed
-                        for (let j = 0; j < i; j++) {
-                            updateLoadingStep(j, false, true);
-                        }
-                        // Mark current step as active
-                        updateLoadingStep(i, true, false);
-                        // Mark future steps as inactive
-                        for (let j = i + 1; j < loadingSteps.length; j++) {
-                            updateLoadingStep(j, false, false);
-                        }
-                        currentStep = i;
-                    }
-                    break;
-                }
-            }
-
-            if (elapsed >= totalDuration) {
-                clearInterval(loadingInterval);
-                // Mark all steps as completed
-                loadingSteps.forEach((_, index) => {
-                    updateLoadingStep(index, false, true);
-                });
+            const stepIndex = Math.floor(elapsed / STEP_DURATION_MS) % loadingSteps.length;
+            if (stepIndex !== currentStep) {
+                loadingSteps.forEach((_, i) => updateLoadingStep(i, i === stepIndex, false));
+                currentStep = stepIndex;
             }
         }, 100);
+    }
+
+    function stopLoading() {
+        clearInterval(loadingInterval);
+        document.getElementById('progressBar').style.width = '100%';
+        document.getElementById('progressPercent').textContent = '100%';
+        loadingSteps.forEach((_, index) => updateLoadingStep(index, false, true));
     }
 
     // Enable/disable generate button based on selections
@@ -326,6 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             const projectData = await response.json();
+            stopLoading();
 
             if (response.ok) {
                 updateResultUI(projectData);
@@ -336,6 +245,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 showToast(projectData.error || 'Failed to generate project', 'error');
             }
         } catch (error) {
+            stopLoading();
             showToast('An error occurred while generating the project', 'error');
         } finally {
             elements.projectLoader?.classList.add('hidden');       // hide loader
@@ -524,8 +434,16 @@ This is an AI-generated project suggestion from LaunchMate. Use it as inspiratio
         URL.revokeObjectURL(url);
     }
 
+    const MAX_VISIBLE_TOASTS = 3;
+
     function showToast(message, type = 'info', duration = 3000) {
         const container = document.getElementById('toast-container');
+
+        // Cap visible toasts so a burst of messages can never push one off-screen
+        // and out of reach; drop the oldest ones immediately.
+        while (container.children.length >= MAX_VISIBLE_TOASTS) {
+            container.children[0].remove();
+        }
 
         // Create toast with Tailwind classes
         const toast = document.createElement('div');
@@ -568,33 +486,6 @@ This is an AI-generated project suggestion from LaunchMate. Use it as inspiratio
         }
     }
 
-    // Add fade-out animation styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .fade-out { opacity: 0; transition: opacity 0.3s ease-out; }
-        .content-hidden { display: none; }
-    `;
-    document.head.appendChild(style);
-
-    // Hide main content initially
-    document.querySelectorAll('body > *:not([id$="-skeleton"])').forEach(el => {
-        el.classList.add('content-hidden');
-    });
-
-    // Handle page load completion
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            isLoading = false;
-            removeSkeletonLoader();
-            // Show main content
-            document.querySelectorAll('.content-hidden').forEach(el => {
-                el.classList.remove('content-hidden');
-            });
-            // Restore original background
-            document.body.style.backgroundColor = '';
-        }, 1500);
-    });
-
     (async () => {
         const urlParams = new URLSearchParams(window.location.hash.substring(1));
         const accessToken = urlParams.get("access_token");
@@ -624,6 +515,11 @@ This is an AI-generated project suggestion from LaunchMate. Use it as inspiratio
 
     document.getElementById('save-project-btn').onclick = async (e) => {
     const btn = e.currentTarget;
+
+    if (btn.dataset.loggedIn !== 'true') {
+        window.location.href = '/login';
+        return;
+    }
 
     // Prevent multiple clicks
     btn.disabled = true;
@@ -655,9 +551,10 @@ This is an AI-generated project suggestion from LaunchMate. Use it as inspiratio
     }
 
     try {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
         const response = await fetch('/save-project', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
             body: JSON.stringify({
                 title,
                 course,

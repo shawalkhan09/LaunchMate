@@ -2,6 +2,10 @@ import os
 import logging
 import requests
 from flask import Flask, request, jsonify, render_template, session, redirect
+from flask_wtf import CSRFProtect
+from flask_wtf.csrf import CSRFError
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from app.generator import generate_project, save_project
 from app.ai_generator import course_prompt_map
 from supabase import create_client
@@ -20,26 +24,80 @@ if not app.secret_key:
     app.logger.warning("FLASK_SECRET_KEY not set: using a throwaway key. Sessions won't survive a restart.")
     app.secret_key = os.urandom(24)
 
+csrf = CSRFProtect(app)
+limiter = Limiter(get_remote_address, app=app, default_limits=[])
+
 VALID_COURSES = set(course_prompt_map.keys())
 VALID_DIFFICULTIES = {"beginner", "intermediate", "advanced"}
+
+CSP = (
+    "default-src 'self'; "
+    "script-src 'self' 'unsafe-inline'; "
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+    "font-src 'self' https://fonts.gstatic.com; "
+    "img-src 'self' data:; "
+    "connect-src 'self'; "
+    "frame-ancestors 'none'"
+)
+
+
+@app.after_request
+def set_security_headers(response):
+    response.headers["Content-Security-Policy"] = CSP
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    is_https = request.is_secure or request.headers.get("X-Forwarded-Proto") == "https"
+    if is_https:
+        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    response.headers["Server"] = "LaunchMate"
+    return response
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
+
+@app.route("/robots.txt")
+def robots_txt():
+    return app.response_class(
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /profile\n"
+        "Disallow: /view-project/\n"
+        "Sitemap: https://launchmate.example.com/sitemap.xml\n",
+        mimetype="text/plain",
+    )
+
+
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    pages = ["", "login"]
+    urls = "".join(
+        f"<url><loc>https://launchmate.example.com/{p}</loc></url>" for p in pages
+    )
+    xml = f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>'
+    return app.response_class(xml, mimetype="application/xml")
+
+
 @app.route("/login", methods=["GET", "POST"])
+@limiter.limit("10 per minute")
 def login():
     if request.method == "POST":
         email = request.form.get("email")
         if not email:
-            return "Email is required", 400
+            return render_template("login.html", error="Email is required."), 400
 
         try:
-            response = supabase.auth.sign_in_with_otp({"email": email})
-            return "Check your email for the magic link!"
+            supabase.auth.sign_in_with_otp({"email": email})
+            return render_template("login.html", success="Check your email for the magic link!")
         except Exception:
             app.logger.exception("Failed to send magic link for %s", email)
-            return "Failed to send magic link", 500
+            return render_template(
+                "login.html",
+                error="We couldn't send the magic link right now. Please try again in a moment.",
+                email=email,
+            ), 500
 
     return render_template("login.html")
 
@@ -66,6 +124,8 @@ def logout():
     return redirect("/")
 
 @app.route("/api/generate", methods=["POST"])
+@csrf.exempt
+@limiter.limit("15 per minute")
 def api_generate():
     data = request.get_json(silent=True)
 
@@ -104,6 +164,7 @@ def view_project(project_id):
         return "Error loading project", 500
 
 @app.route("/auth/callback", methods=["POST"])
+@csrf.exempt
 def auth_callback():
     try:
         access_token = request.json.get("access_token")
@@ -140,6 +201,7 @@ def auth_callback():
         return jsonify({"error": "Failed to create or verify user"}), 500
 
 @app.route("/delete-project/<project_id>", methods=["DELETE"])
+@csrf.exempt
 def delete_project(project_id):
     if "user_id" not in session:
         return jsonify({"error": "You must be logged in to delete projects."}), 401
@@ -210,6 +272,41 @@ def save_project_route():
         app.logger.exception("Failed to save project for user %s", user_id)
         return jsonify({"error": "Error saving project"}), 500
 
+
+@app.errorhandler(CSRFError)
+def csrf_error(e):
+    if request.is_json:
+        return jsonify({"error": "Your session has expired. Please refresh the page and try again."}), 400
+    return render_template(
+        "error.html", code=400, title="Form expired",
+        message="Your session token expired or is invalid. Please go back and try again."
+    ), 400
+
+
+@app.errorhandler(429)
+def rate_limited(e):
+    if request.is_json:
+        return jsonify({"error": "Too many requests. Please slow down and try again shortly."}), 429
+    return render_template(
+        "error.html", code=429, title="Slow down",
+        message="You've made too many requests. Please wait a moment and try again."
+    ), 429
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template(
+        "error.html", code=404, title="Page not found",
+        message="The page you're looking for doesn't exist or has moved."
+    ), 404
+
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template(
+        "error.html", code=500, title="Something went wrong",
+        message="An unexpected error occurred on our end. Please try again."
+    ), 500
 
 
 if __name__ == "__main__":

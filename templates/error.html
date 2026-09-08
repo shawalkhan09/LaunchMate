@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ code }} | LaunchMate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.classList.toggle('dark', theme === 'dark');
+        })();
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-slate-950 min-h-screen flex items-center justify-center font-inter">
+    <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl p-10 max-w-md w-full text-center">
+        <p class="text-primary font-bold text-lg mb-2">{{ code }}</p>
+        <h1 class="text-2xl font-bold text-slate-800 dark:text-white mb-3">{{ title }}</h1>
+        <p class="text-slate-500 dark:text-slate-400 mb-6">{{ message }}</p>
+        <a href="/"
+           class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-primary hover:bg-primary-dark text-white shadow-md transition duration-300">
+            Back to homepage
+        </a>
+    </div>
+</body>
+</html>
