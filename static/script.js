@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (isActive) {
             stepElement.classList.add('bg-violet-100', 'dark:bg-violet-900/30', 'scale-105');
-            stepIcon.classList.add('bg-violet-600', 'text-white', 'animate-pulse-slow');
+            stepIcon.classList.add('bg-violet-500', 'text-white', 'animate-pulse-slow');
             stepText.classList.add('text-violet-700', 'dark:text-violet-300');
 
             // Add bouncing dots using the new animation
@@ -210,16 +210,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 const dots = document.createElement('div');
                 dots.className = 'bouncing-dots flex space-x-1';
                 dots.innerHTML = `
-                    <div class="w-2 h-2 bg-violet-600 rounded-full animate-bounce-slow"></div>
-                    <div class="w-2 h-2 bg-violet-600 rounded-full animate-bounce-slow" style="animation-delay: 0.1s;"></div>
-                    <div class="w-2 h-2 bg-violet-600 rounded-full animate-bounce-slow" style="animation-delay: 0.2s;"></div>
+                    <div class="w-2 h-2 bg-violet-500 rounded-full animate-bounce-slow"></div>
+                    <div class="w-2 h-2 bg-violet-500 rounded-full animate-bounce-slow" style="animation-delay: 0.1s;"></div>
+                    <div class="w-2 h-2 bg-violet-500 rounded-full animate-bounce-slow" style="animation-delay: 0.2s;"></div>
                 `;
                 stepElement.appendChild(dots);
             }
         } else if (isCompleted) {
-            stepElement.classList.add('bg-green-50', 'dark:bg-green-900/20');
-            stepIcon.classList.add('bg-green-500', 'text-white');
-            stepText.classList.add('text-green-700', 'dark:text-green-300');
+            stepElement.classList.add('bg-emerald-50', 'dark:bg-emerald-900/20');
+            stepIcon.classList.add('bg-emerald-500', 'text-white');
+            stepText.classList.add('text-emerald-700', 'dark:text-emerald-300');
             stepIcon.innerHTML = `
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -539,7 +539,7 @@ ${elements.estimatedTime.textContent}
         // Create toast with Tailwind classes
         const toast = document.createElement('div');
         toast.className = `animate-[toastIn_0.3s_ease-out] p-4 rounded-lg shadow-md border flex items-center justify-between 
-            ${type === 'success' ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200' :
+            ${type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-800 dark:bg-emerald-900/20 dark:border-emerald-800 dark:text-emerald-200' :
                 type === 'error' ? 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-200' :
                     type === 'warning' ? 'bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-200' :
                         'bg-violet-50 border-violet-200 text-violet-800 dark:bg-violet-900/20 dark:border-violet-800 dark:text-violet-200' // default/info
