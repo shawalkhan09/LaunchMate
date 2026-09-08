@@ -8,7 +8,7 @@ LaunchMate is a productivity tool that helps university students generate **prac
 
 1. Select your course and difficulty level
 2. Click **Generate Project**
-3. The Groq AI (LLaMA3-70B) generates a structured, implementable project idea
+3. Google Gemini generates a structured, implementable project idea
 4. Get a full project spec, including:
    - 📌 Title & Description
    - 🛠 Tools & Technologies
@@ -38,7 +38,7 @@ LaunchMate is a productivity tool that helps university students generate **prac
 
 - **Frontend**: HTML, CSS, JavaScript (Vanilla)
 - **Backend**: Python, Flask
-- **AI Integration**: Groq API (LLaMA3-70B)
+- **AI Integration**: Google Gemini API
 - **Database**: Supabase (PostgreSQL + Auth)
 - **Hosting**: PythonAnywhere (for v1.0), [TBD for v1.1]
 - **Design System**: TailwindCSS-inspired styling
@@ -52,7 +52,7 @@ LaunchMate is a productivity tool that helps university students generate **prac
 launchmate/
 ├── app/
 │   ├── generator.py         # Project generation logic
-│   ├── ai_generator.py      # Handles communication with Groq API
+│   ├── ai_generator.py      # Handles communication with Gemini API
 │   ├── templates.py         # Course-specific prompt templates
 │   ├── utils.py             # Helper functions (e.g., fallback logic)
 │   ├── supabase_client.py   # Supabase DB and Auth integration
@@ -72,7 +72,7 @@ launchmate/
 │
 ├── fallback_projects.json   # JSON-based project backup if API fails
 ├── server.py                # Flask server (main app entrypoint)
-├── .env                     # Environment variables (Groq + Supabase)
+├── .env                     # Environment variables (Gemini + Supabase)
 ├── requirements.txt         # Python dependencies
 └── README.md                # This documentation file
 
@@ -80,7 +80,7 @@ launchmate/
 
 ## 🔧 Features
 
-- **AI-Powered Generation:** Uses Groq's Mixtral-8x7b model for intelligent project suggestions
+- **AI-Powered Generation:** Uses Google's Gemini model for intelligent project suggestions
 - **Course-Specific:** Tailored to different courses and subjects
 - **Difficulty Levels:** Adjustable project complexity
 - **Structured Output:** Comprehensive project specifications

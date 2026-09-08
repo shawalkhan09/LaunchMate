@@ -2,11 +2,14 @@ import os
 import json
 import re
 import random
-from groq import Groq
+import requests
 from dotenv import load_dotenv
 from app.utils import is_valid_project
 
 load_dotenv()
+
+GEMINI_MODEL = "gemini-3.5-flash"
+GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 
 # Load fallback project ideas from file
 with open('fallback_projects.json', 'r') as f:
@@ -529,12 +532,10 @@ def get_prompt(course, difficulty, theme, twist, platform):
 
 # 🚀 Main AI project generator
 def ai_generate_project(course, difficulty):
-    api_key = os.getenv('GROQ_API_KEY')
+    api_key = os.getenv('GEMINI_API_KEY')
     if not api_key:
-        print("[Groq Error] Missing API key")
+        print("[Gemini Error] Missing API key")
         return get_fallback_project(course, difficulty)
-
-    client = Groq(api_key=api_key)
 
     themes = ["mental health", "education", "sustainability", "career development", "data security", "productivity"]
     twists = ["must use a public API", "targets non-tech users", "uses gamification", "works offline", "features real-time data"]
@@ -549,15 +550,22 @@ def ai_generate_project(course, difficulty):
         return get_fallback_project(course, difficulty)
 
     try:
-        completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.8,
-            top_p=0.9,
-            max_tokens=2048
+        api_response = requests.post(
+            GEMINI_URL,
+            params={"key": api_key},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "temperature": 0.8,
+                    "topP": 0.9,
+                    "maxOutputTokens": 2048,
+                    "thinkingConfig": {"thinkingBudget": 0}
+                }
+            },
+            timeout=30
         )
-
-        response = completion.choices[0].message.content
+        api_response.raise_for_status()
+        response = api_response.json()["candidates"][0]["content"]["parts"][0]["text"]
         print("[🧠 AI Response Raw]:", response)
 
         start = response.find('{')
