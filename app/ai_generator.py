@@ -4,6 +4,7 @@ import re
 import random
 from groq import Groq
 from dotenv import load_dotenv
+from app.utils import is_valid_project
 
 load_dotenv()
 
@@ -549,7 +550,7 @@ def ai_generate_project(course, difficulty):
 
     try:
         completion = client.chat.completions.create(
-            model="llama3-70b-8192",
+            model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.8,
             top_p=0.9,
@@ -569,6 +570,10 @@ def ai_generate_project(course, difficulty):
         required_fields = ["title", "description", "tools", "file_structure", "bonus", "learning_outcomes", "build_steps", "estimated_time", "external_resources"]
         if not all(field in data for field in required_fields):
             raise ValueError("Missing required fields in response")
+
+        if not is_valid_project(course, difficulty, data):
+            print("[AI Error] Generated project failed course/tool validation")
+            return get_fallback_project(course, difficulty)
 
         return data
 

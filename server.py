@@ -1,7 +1,9 @@
 import os
+import logging
 import requests
 from flask import Flask, request, jsonify, render_template, session, redirect
 from app.generator import generate_project, save_project
+from app.ai_generator import course_prompt_map
 from supabase import create_client
 from dotenv import load_dotenv
 
@@ -11,7 +13,15 @@ SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.logger.setLevel(logging.INFO)
+
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
+if not app.secret_key:
+    app.logger.warning("FLASK_SECRET_KEY not set — using a throwaway key; sessions won't survive a restart.")
+    app.secret_key = os.urandom(24)
+
+VALID_COURSES = set(course_prompt_map.keys())
+VALID_DIFFICULTIES = {"beginner", "intermediate", "advanced"}
 
 @app.route("/")
 def index():
@@ -27,7 +37,8 @@ def login():
         try:
             response = supabase.auth.sign_in_with_otp({"email": email})
             return "Check your email for the magic link!"
-        except Exception as e:
+        except Exception:
+            app.logger.exception("Failed to send magic link for %s", email)
             return "Failed to send magic link", 500
 
     return render_template("login.html")
@@ -43,7 +54,8 @@ def profile():
         user_id = session.get("user_id")
         response = supabase.table("projects").select("*").eq("user_id", user_id).execute()
         projects = response.data
-    except Exception as e:
+    except Exception:
+        app.logger.exception("Failed to fetch projects for user %s", session.get("user_id"))
         projects = []
     
     return render_template("profile.html", email=session["email"], projects=projects)
@@ -51,32 +63,27 @@ def profile():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/profile")
+    return redirect("/")
 
 @app.route("/api/generate", methods=["POST"])
 def api_generate():
-    data = request.get_json()
+    data = request.get_json(silent=True)
 
     if not data or not data.get("course") or not data.get("difficulty"):
         return jsonify({"error": "Missing course or difficulty"}), 400
 
-    title, project_data = generate_project(data["course"], data["difficulty"])
+    course = data["course"].strip().lower()
+    difficulty = data["difficulty"].strip().lower()
+
+    if course not in VALID_COURSES or difficulty not in VALID_DIFFICULTIES:
+        return jsonify({"error": "Unknown course or difficulty"}), 400
+
+    title, project_data = generate_project(course, difficulty)
 
     if not project_data:
         return jsonify({"error": "Failed to generate project"}), 500
 
     return jsonify(project_data)
-
-@app.route("/generate", methods=["POST"])
-def form_generate():
-    course = request.form.get("course")
-    difficulty = request.form.get("difficulty")
-
-    if not course or not difficulty:
-        return "Missing fields", 400
-
-    _, project_data = generate_project(course, difficulty)
-    return render_template("result.html", project=project_data)
 
 @app.route("/view-project/<project_id>")
 def view_project(project_id):
@@ -92,7 +99,8 @@ def view_project(project_id):
             
         project_data = project.data[0]
         return render_template("project.html", project=project_data)
-    except Exception as e:
+    except Exception:
+        app.logger.exception("Failed to load project %s", project_id)
         return "Error loading project", 500
 
 @app.route("/auth/callback", methods=["POST"])
@@ -127,7 +135,8 @@ def auth_callback():
             }).execute()
         
         return redirect("/profile")
-    except Exception as e:
+    except Exception:
+        app.logger.exception("Auth callback failed")
         return jsonify({"error": "Failed to create or verify user"}), 500
 
 @app.route("/delete-project/<project_id>", methods=["DELETE"])
@@ -146,12 +155,12 @@ def delete_project(project_id):
             
         supabase.table("projects").delete().eq("id", project_id).eq("user_id", user_id).execute()
         return jsonify({"success": True})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    except Exception:
+        app.logger.exception("Failed to delete project %s", project_id)
+        return jsonify({"error": "Error deleting project"}), 500
 
 @app.route("/save-project", methods=["POST"])
 def save_project_route():
-    print("💾 save_project() function called directly")
     if "user_id" not in session:
         return jsonify({"error": "You must be logged in to save projects."}), 401
 
@@ -197,7 +206,8 @@ def save_project_route():
             "external_resources": external_resources
         }).execute()
         return jsonify({"success": True})
-    except Exception as e:
+    except Exception:
+        app.logger.exception("Failed to save project for user %s", user_id)
         return jsonify({"error": "Error saving project"}), 500
 
 

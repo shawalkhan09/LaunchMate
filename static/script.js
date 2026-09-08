@@ -312,8 +312,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        elements.projectResult?.classList.add('hidden');        // ✅ hide old result
-        elements.projectLoader?.classList.remove('hidden');     // ✅ show loader
+        elements.result?.classList.add('hidden');                // hide old result
+        elements.projectLoader?.classList.remove('hidden');       // show loader
         setLoadingState(elements.generateBtn, true);
         startLoading();
 
@@ -329,29 +329,18 @@ document.addEventListener('DOMContentLoaded', function () {
             const projectData = await response.json();
 
             if (response.ok) {
-                elements.title.textContent = projectData.title;
-                elements.description.textContent = projectData.description;
-                elements.tools.innerHTML = projectData.tools.map(tool => `<li>${tool}</li>`).join('');
-                elements.fileStructure.innerHTML = projectData.file_structure.map(item => `<li>${item}</li>`).join('');
-                elements.learningOutcomes.innerHTML = projectData.learning_outcomes.map(outcome => `<li>${outcome}</li>`).join('');
-                elements.buildSteps.innerHTML = projectData.build_steps.map(step => `<li>${step}</li>`).join('');
-                elements.apiLinks.innerHTML = projectData.external_resources.map(link => `<li><a href="${link}" target="_blank">${link}</a></li>`).join('');
-                elements.estimatedTime.textContent = projectData.estimated_time;
-
+                updateResultUI(projectData);
                 showToast('Project generated successfully!', 'success');
                 elements.result.classList.remove('hidden');
                 scrollToElement('#result');
-
             } else {
                 showToast(projectData.error || 'Failed to generate project', 'error');
             }
         } catch (error) {
             showToast('An error occurred while generating the project', 'error');
         } finally {
-            elements.projectLoader?.classList.add('hidden');       // ✅ hide loader
-            elements.projectResult?.classList.remove('hidden');    // ✅ show result
+            elements.projectLoader?.classList.add('hidden');       // hide loader
             setLoadingState(elements.generateBtn, false);
-            scrollToElement('#result');                            // ✅ scroll to result
         }
     });
 
@@ -473,12 +462,16 @@ document.addEventListener('DOMContentLoaded', function () {
             ul.className = 'space-y-2';
 
             links.forEach(link => {
+                const url = link.url || link;
+                // AI-generated content — only allow http(s) links, never javascript:/data: etc.
+                if (!/^https?:\/\//i.test(url)) return;
+
                 const li = document.createElement('li');
                 const a = document.createElement('a');
                 const icon = document.createElement('span');
                 icon.innerHTML = '🔗';
                 icon.className = 'text-lg';
-                a.href = link.url || link;
+                a.href = url;
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
                 a.className = 'text-primary hover:text-primary-light transition-all duration-300 flex items-center gap-3 hover:translate-x-1';
@@ -611,35 +604,32 @@ ${elements.estimatedTime.textContent}
         }, 1500);
     });
 
-    window.addEventListener("DOMContentLoaded", async () => {
+    (async () => {
         const urlParams = new URLSearchParams(window.location.hash.substring(1));
         const accessToken = urlParams.get("access_token");
-    
-        if (accessToken) {
-            try {
-                const res = await fetch("/auth/callback", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ access_token: accessToken })
-                });
-    
-                if (res.ok) {
-                    // ✅ Clear hash (optional, but clean)
-                    window.location.hash = "";
-                
-                    // ✅ Force full reload with updated session
-                    window.location.replace("/");
-                } else {
-                    const data = await res.json();
-                    console.error("❌ Auth callback failed:", data.error);
-                }
-            } catch (error) {
-                console.error("❌ Error during auth callback:", error);
+
+        if (!accessToken) return;
+
+        try {
+            const res = await fetch("/auth/callback", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ access_token: accessToken })
+            });
+
+            if (res.ok) {
+                // Force full reload with updated session; also clears the hash
+                window.location.replace("/");
+            } else {
+                const data = await res.json();
+                console.error("Auth callback failed:", data.error);
             }
+        } catch (error) {
+            console.error("Error during auth callback:", error);
         }
-    });
+    })();
 
     document.getElementById('save-project-btn').onclick = async (e) => {
     const btn = e.currentTarget;
@@ -716,34 +706,6 @@ ${elements.estimatedTime.textContent}
         btn.textContent = "Save Project";
     }
 };
-
-
-    window.addEventListener("DOMContentLoaded", async () => {
-        const fragment = new URLSearchParams(window.location.hash.slice(1));
-        const accessToken = fragment.get("access_token");
-
-        if (accessToken) {
-            try {
-                const res = await fetch("/auth/callback", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ access_token: accessToken })
-                });
-
-                const data = await res.json();
-                if (data.success) {
-                    // Refresh the page so session data is set and nav updates
-                    window.location.href = "/";
-                } else {
-                    console.error("Auth failed:", data.error);
-                }
-            } catch (e) {
-                console.error("Error during auth callback:", e);
-            }
-        }
-    });
 });
 
 

@@ -1,19 +1,20 @@
 from app.ai_generator import ai_generate_project
+from app.supabase_client import supabase
 import os
 import re
-from app.supabase_client import supabase
-from flask import session
+import logging
 
 def generate_project(course_name, difficulty):
     try:
         project = ai_generate_project(course_name, difficulty)
-        
+
         if not project:
             return None, None
-            
+
         formatted_project = format_project(project)
         return formatted_project, project
-    except Exception as e:
+    except Exception:
+        logging.exception("generate_project failed for %s/%s", course_name, difficulty)
         return None, None
 
 def format_project(project):
