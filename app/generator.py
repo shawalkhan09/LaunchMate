@@ -1,5 +1,4 @@
 from app.ai_generator import ai_generate_project
-from app.supabase_client import supabase
 import os
 import re
 import logging
@@ -60,31 +59,4 @@ def save_project_to_file(project, folder="saved_projects"):
         f.write(format_project(project))
 
     return filepath
-
-def save_project(title, course, description, tags, user_id=None, project_data=None):
-    if not user_id:
-        print("Cannot save project: no user ID")
-        return
-
-    try:
-        # Extract additional fields from project_data if available
-        project_details = {
-            "title": title,
-            "course": course,
-            "description": description,
-            "tags": tags,
-            "user_id": user_id,
-            "tools": project_data.get("tools", []) if project_data else [],
-            "file_structure": project_data.get("file_structure", []) if project_data else [],
-            "bonus": project_data.get("bonus", "") if project_data else "",
-            "learning_outcomes": project_data.get("learning_outcomes", []) if project_data else [],
-            "build_steps": project_data.get("build_steps", []) if project_data else [],
-            "estimated_time": project_data.get("estimated_time", "") if project_data else "",
-            "external_resources": project_data.get("external_resources", []) if project_data else []
-        }
-
-        response = supabase.table("projects").insert(project_details).execute()
-        print("Project saved:", response)
-    except Exception as e:
-        print("Error saving project:", e)
 

@@ -6,14 +6,16 @@ import requests
 from dotenv import load_dotenv
 from app.utils import is_valid_project
 
-load_dotenv()
+# Absolute paths: cwd isn't guaranteed to be the project root under WSGI
+# servers, unlike running server.py directly, and load_dotenv()'s automatic
+# discovery isn't reliable in that case either.
+_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+load_dotenv(os.path.join(_PROJECT_ROOT, ".env"))
 
 GEMINI_MODEL = "gemini-3.5-flash"
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 
-# Load fallback project ideas from file (absolute path: cwd isn't guaranteed
-# to be the project root under WSGI servers, unlike running server.py directly)
-_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+# Load fallback project ideas from file
 with open(os.path.join(_PROJECT_ROOT, 'fallback_projects.json'), 'r') as f:
     fallback_projects = json.load(f)
 

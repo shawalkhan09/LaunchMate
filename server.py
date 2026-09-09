@@ -6,12 +6,15 @@ from flask_wtf import CSRFProtect
 from flask_wtf.csrf import CSRFError
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from app.generator import generate_project, save_project
+from app.generator import generate_project
 from app.ai_generator import course_prompt_map
 from supabase import create_client
 from dotenv import load_dotenv
 
-load_dotenv()
+# Explicit path: load_dotenv()'s automatic discovery isn't reliable under
+# every WSGI server, since it depends on the process's working directory
+# or stack-frame introspection rather than this file's own location.
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
