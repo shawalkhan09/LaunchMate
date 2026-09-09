@@ -19,500 +19,161 @@
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='logo.svg') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
 </head>
 
 <body
-    class="font-inter bg-gray-50 dark:bg-slate-950 text-slate-800 dark:text-white transition-colors duration-300">
+    class="font-plex bg-paper dark:bg-paper-dark text-ink dark:text-ink-dark transition-colors duration-300">
 
     <!-- Navigation - Fixed -->
     <nav
-        class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 shadow-sm transition-colors duration-300">
+        class="fixed top-0 left-0 right-0 z-50 bg-paper/80 dark:bg-paper-dark/80 backdrop-blur-xl border-b border-hairline dark:border-hairline-dark transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <span class="text-2xl font-bold brand-text">LaunchMate</span>
-                </div>
+                <a href="/" class="flex items-center gap-2">
+                    <span class="font-mono text-lg text-accent dark:text-accent-dark">&lt;/&gt;</span>
+                    <span class="font-mono text-lg font-semibold text-ink dark:text-ink-dark">LaunchMate</span>
+                </a>
 
-                <!-- Desktop Navigation - Changed from hidden to flex on md screens -->
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center gap-8">
                     <a href="#how-it-works"
-                        class="text-slate-700 hover:text-violet-600 dark:text-slate-300 dark:hover:text-violet-400 font-medium transition-colors duration-200">How
-                        It Works</a>
+                        class="font-mono text-sm text-ink-soft hover:text-accent dark:text-ink-soft-dark dark:hover:text-accent-dark transition-colors duration-200">how it works</a>
                     <a href="#features"
-                        class="text-slate-700 hover:text-violet-600 dark:text-slate-300 dark:hover:text-violet-400 font-medium transition-colors duration-200">Features</a>
+                        class="font-mono text-sm text-ink-soft hover:text-accent dark:text-ink-soft-dark dark:hover:text-accent-dark transition-colors duration-200">features</a>
                     <a href="#courses"
-                        class="text-slate-700 hover:text-violet-600 dark:text-slate-300 dark:hover:text-violet-400 font-medium transition-colors duration-200">Courses</a>
+                        class="font-mono text-sm text-ink-soft hover:text-accent dark:text-ink-soft-dark dark:hover:text-accent-dark transition-colors duration-200">courses</a>
 
                     <!-- Theme Toggle -->
                     <button id="theme-toggle"
-                        class="btn btn-ghost h-10 px-3 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300">
-                        <span class="hidden dark:inline">Light mode</span>
-                        <span class="inline dark:hidden">Dark mode</span>
+                        class="font-mono text-sm h-10 px-3 rounded-md text-ink-soft dark:text-ink-soft-dark hover:text-accent dark:hover:text-accent-dark transition-colors duration-200">
+                        <span class="hidden dark:inline">light mode</span>
+                        <span class="inline dark:hidden">dark mode</span>
                     </button>
 
                     <div class="flex items-center gap-4">
                         {% if session.get('email') %}
                         <!-- Profile Button -->
                         <a href="/profile"
-                            class="px-5 py-2 rounded-xl font-semibold border border-violet-600 text-violet-600 dark:text-violet-400 bg-transparent hover:bg-violet-50 dark:hover:bg-slate-800 transition-all duration-300">
+                            class="px-4 py-2 rounded-md font-medium text-sm border border-accent text-accent dark:border-accent-dark dark:text-accent-dark bg-transparent hover:bg-accent-soft dark:hover:bg-accent-soft-dark transition-all duration-200">
                             Profile
                         </a>
                         <!-- Logout Button -->
                         <a href="/logout"
-                            class="px-5 py-2 rounded-xl font-semibold border border-red-500 text-red-500 dark:text-red-400 bg-transparent hover:bg-red-50 dark:hover:bg-slate-800 transition-all duration-300">
+                            class="px-4 py-2 rounded-md font-medium text-sm border border-red-400 text-red-500 dark:text-red-400 bg-transparent hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200">
                             Logout
                         </a>
                         {% else %}
                         <!-- Sign In Button -->
                         <a href="/login"
-                            class="px-5 py-2 rounded-xl font-semibold border border-violet-600 text-violet-600 dark:text-violet-400 bg-transparent hover:bg-violet-50 dark:hover:bg-slate-800 transition-all duration-300">
+                            class="px-4 py-2 rounded-md font-medium text-sm border border-accent text-accent dark:border-accent-dark dark:text-accent-dark bg-transparent hover:bg-accent-soft dark:hover:bg-accent-soft-dark transition-all duration-200">
                             Sign In / Sign Up
                         </a>
                         {% endif %}
 
                         <a href="#generator"
-                            class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
-                            Get Started
+                            class="inline-flex items-center justify-center px-5 py-2 rounded-md font-medium text-sm shadow-sm hover:shadow transition-all duration-200 bg-accent hover:bg-accent-dark text-white focus:outline-none focus:ring-2 focus:ring-accent/50">
+                            Generate a project
                         </a>
                     </div>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn"
-                    class="btn btn-ghost md:hidden px-3 py-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
-                    Menu
+                    class="font-mono md:hidden px-3 py-2 text-sm text-ink-soft dark:text-ink-soft-dark">
+                    menu
                 </button>
             </div>
 
             <!-- Mobile Navigation -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-slate-200 dark:border-slate-700">
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-hairline dark:border-hairline-dark">
                 <div class="flex flex-col gap-4 pt-4">
                     <a href="#how-it-works"
-                        class="text-slate-700 hover:text-violet-600 dark:text-slate-300 dark:hover:text-violet-400 font-medium transition-colors duration-200">How
-                        It Works</a>
+                        class="font-mono text-sm text-ink-soft hover:text-accent dark:text-ink-soft-dark dark:hover:text-accent-dark transition-colors duration-200">how it works</a>
                     <a href="#features"
-                        class="text-slate-700 hover:text-violet-600 dark:text-slate-300 dark:hover:text-violet-400 font-medium transition-colors duration-200">Features</a>
+                        class="font-mono text-sm text-ink-soft hover:text-accent dark:text-ink-soft-dark dark:hover:text-accent-dark transition-colors duration-200">features</a>
                     <a href="#courses"
-                        class="text-slate-700 hover:text-violet-600 dark:text-slate-300 dark:hover:text-violet-400 font-medium transition-colors duration-200">Courses</a>
+                        class="font-mono text-sm text-ink-soft hover:text-accent dark:text-ink-soft-dark dark:hover:text-accent-dark transition-colors duration-200">courses</a>
 
                     <div class="flex items-center justify-between">
-                        <span class="text-slate-700 dark:text-slate-300 font-medium">Theme</span>
+                        <span class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark">theme</span>
                         <button id="mobile-theme-toggle"
-                            class="h-10 px-3 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-sm font-semibold text-slate-600 dark:text-slate-400 transition-colors duration-200">
-                            <span class="hidden dark:inline">Light</span>
-                            <span class="inline dark:hidden">Dark</span>
+                            class="font-mono h-9 px-3 rounded-md bg-card dark:bg-card-dark border border-hairline dark:border-hairline-dark text-sm text-ink-soft dark:text-ink-soft-dark transition-colors duration-200">
+                            <span class="hidden dark:inline">light</span>
+                            <span class="inline dark:hidden">dark</span>
                         </button>
                     </div>
                     {% if session.get('email') %}
                     <!-- Profile Button -->
                     <a href="/profile"
-                        class="px-5 py-2 rounded-xl font-semibold border border-violet-600 text-violet-600 dark:text-violet-400 bg-transparent hover:bg-violet-50 dark:hover:bg-slate-800 transition-all duration-300">
+                        class="px-4 py-2 rounded-md font-medium text-sm border border-accent text-accent dark:border-accent-dark dark:text-accent-dark bg-transparent hover:bg-accent-soft dark:hover:bg-accent-soft-dark transition-all duration-200">
                         Profile
                     </a>
 
                     <!-- Logout Button -->
                     <a href="/logout"
-                        class="px-5 py-2 rounded-xl font-semibold border border-red-500 text-red-500 dark:text-red-400 bg-transparent hover:bg-red-50 dark:hover:bg-slate-800 transition-all duration-300">
+                        class="px-4 py-2 rounded-md font-medium text-sm border border-red-400 text-red-500 dark:text-red-400 bg-transparent hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200">
                         Logout
                     </a>
                     {% else %}
                     <!-- Sign In Button -->
                     <a href="/login"
-                        class="px-5 py-2 rounded-xl font-semibold border border-violet-600 text-violet-600 dark:text-violet-400 bg-transparent hover:bg-violet-50 dark:hover:bg-slate-800 transition-all duration-300">
+                        class="px-4 py-2 rounded-md font-medium text-sm border border-accent text-accent dark:border-accent-dark dark:text-accent-dark bg-transparent hover:bg-accent-soft dark:hover:bg-accent-soft-dark transition-all duration-200">
                         Sign In / Sign Up
                     </a>
                     {% endif %}
 
-
                     <a href="#generator"
-                        class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">Get
-                        Started</a>
+                        class="inline-flex items-center justify-center px-5 py-2 rounded-md font-medium text-sm shadow-sm transition-all duration-200 bg-accent hover:bg-accent-dark text-white">
+                        Generate a project
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6">
+    <!-- Hero + Generator Section -->
+    <section id="generator" class="pt-32 pb-16 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="space-y-8">
-                    <div class="space-y-6">
-                        <h1 class="text-6xl sm:text-7xl font-bold leading-tight">
-                            <span class="brand-text">Launch</span>
-                            <span class="text-slate-800 dark:text-white">Mate</span>
-                        </h1>
-                        <h2 class="text-4xl sm:text-5xl font-bold text-slate-800 dark:text-slate-200 leading-tight">
-                            Instantly Generate AI-Powered Project Ideas
-                        </h2>
-                        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
-                            LaunchMate helps students and developers create unique, course-specific project ideas for Python, Web, ML, and more. Perfect for portfolios and final year projects.
-                        </p>
+                <!-- Pitch -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2">
+                        <span class="font-mono text-accent dark:text-accent-dark">&lt;/&gt;</span>
+                        <span class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark">project generator</span>
                     </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#generator"
-                            class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
-                            Get Started
-                            </a>
-                        <a href="#how-it-works"
-                            class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-violet-600 text-violet-600 dark:border-violet-400 dark:text-violet-400 bg-transparent hover:bg-violet-50 dark:hover:bg-violet-900/20 transition-all duration-300 gap-2 hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
-                            Learn More
-                        </a>
-                    </div>
-
-                    <div class="flex items-center gap-6 pt-4">
-                        <div class="flex -space-x-3">
-                            <div
-                                class="w-12 h-12 rounded-full bg-violet-500 border-3 border-white dark:border-slate-800 shadow-lg">
-                            </div>
-                            <div
-                                class="w-12 h-12 rounded-full bg-violet-600 border-3 border-white dark:border-slate-800 shadow-lg">
-                            </div>
-                            <div
-                                class="w-12 h-12 rounded-full bg-emerald-500 border-3 border-white dark:border-slate-800 shadow-lg">
-                            </div>
-                        </div>
-                        <div class="text-slate-600 dark:text-slate-400">
-                            <p class="font-semibold">
-                                Trusted by <span class="text-violet-600 dark:text-violet-400">500+</span> students
-                            </p>
-                            <div class="flex items-center gap-1">
-                                <span class="text-sm ml-1">4.9/5 (120 reviews)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-center lg:justify-end">
-                    <div class="relative">
-                        <div
-                            class="w-80 h-80 bg-violet-500 dark:bg-violet-700 rounded-3xl shadow-2xl flex items-center justify-center transform rotate-3 hover:rotate-6 transition-transform duration-500 animate-float">
-                            </div>
-                        <div
-                            class="absolute -top-8 -right-8 w-24 h-24 bg-emerald-500 dark:bg-emerald-600 rounded-full opacity-80 animate-bounce">
-                        </div>
-                        <div
-                            class="absolute -bottom-8 -left-8 w-32 h-32 bg-violet-300 dark:bg-violet-700 rounded-full opacity-60">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <span
-                    class="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-violet-500 text-white shadow-md hover:shadow-lg transition-shadow duration-300 mb-6">
-                    Process
-                </span>
-
-                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">How It Works</h2>
-                <p class="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                    Get from idea to implementation in just a few simple steps
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div
-                    class="relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 bg-violet-500 text-white rounded-2xl flex items-center justify-center font-bold text-2xl mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            1</div>
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Choose Course & Level</h3>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Select your course and difficulty
-                            level to match your skills</p>
-                    </div>
-                    <div
-                        class="absolute -top-4 -right-4 w-12 h-12 bg-violet-100 dark:bg-violet-900/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
-
-                <div
-                    class="relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 bg-violet-500 text-white rounded-2xl flex items-center justify-center font-bold text-2xl mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            2</div>
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Generate Project</h3>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Get a tailored project idea
-                            instantly with AI</p>
-                    </div>
-                    <div
-                        class="absolute -bottom-4 -left-4 w-12 h-12 bg-violet-100 dark:bg-violet-900/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
-
-                <div
-                    class="relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 bg-violet-500 text-white rounded-2xl flex items-center justify-center font-bold text-2xl mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            3</div>
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Get Blueprint</h3>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Receive complete project structure
-                            and resources</p>
-                    </div>
-                    <div
-                        class="absolute -top-4 -left-4 w-12 h-12 bg-violet-100 dark:bg-violet-900/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
-
-                <div
-                    class="relative bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <div class="text-center">
-                        <div
-                            class="w-16 h-16 bg-violet-500 text-white rounded-2xl flex items-center justify-center font-bold text-2xl mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            4</div>
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Start Building</h3>
-                        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Download and begin coding with
-                            confidence</p>
-                    </div>
-                    <div
-                        class="absolute -bottom-4 -right-4 w-12 h-12 bg-violet-100 dark:bg-violet-900/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features"
-        class="py-24 px-6 bg-violet-50/40 dark:bg-slate-800/40">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <span
-                    class="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-violet-500 text-white shadow-md hover:shadow-lg transition-shadow duration-300 mb-6">
-                    Benefits
-                </span>
-                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Key Features</h2>
-                <p class="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                    Everything you need to turn ideas into reality
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Tailored Projects</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Custom projects perfectly aligned with
-                        your course content and current skill level for optimal learning.</p>
-                </div>
-
-                <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Complete Blueprint</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Detailed project structure with
-                        recommended tools, technologies, and step-by-step implementation guidance.</p>
-                </div>
-
-                <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Educational Focus</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Projects designed specifically to
-                        reinforce key concepts and promote skill development in your field.</p>
-                </div>
-
-                <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Download Ready</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Export project details with one click
-                        to PDF, Markdown, or directly to your GitHub repository.</p>
-                </div>
-
-                <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Progress Tracking</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Monitor your project completion and
-                        skill development with built-in progress indicators.</p>
-                </div>
-
-                <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group">
-                    <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Iterative Learning</h3>
-                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Generate variations of your project to
-                        explore different approaches and deepen understanding.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Courses Section -->
-    <section id="courses" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <span
-                    class="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-violet-500 text-white shadow-md hover:shadow-lg transition-shadow duration-300 mb-6">
-                    Learning Paths
-                </span>
-                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Supported Courses</h2>
-                <p class="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                    Comprehensive coverage of modern development disciplines
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="python"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Python</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Flask</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Django</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Automation</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="oop"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">OOP</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Java</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">C++</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Design Patterns</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="dbms"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">DBMS</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">SQL</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">NoSQL</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">ORM</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="software-engineering"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Software Engineering</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">CI/CD</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Testing</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Agile</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="machine-learning"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Machine Learning</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">TensorFlow</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">PyTorch</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">NLP</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="data-science"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Data Science</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Pandas</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Matplotlib</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">EDA</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="web-dev"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Web Development</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">React</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Node.js</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">REST API</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="mobile-dev"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Mobile Development</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Flutter</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">React Native</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Swift</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="dsa"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Data Structures & Algorithms</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Sorting</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Recursion</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Graphs</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="cloud-computing"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Cloud Computing</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">AWS</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Azure</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Google Cloud</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="cybersecurity"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Cybersecurity</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Encryption</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Network Security</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Ethical Hacking</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="devops"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">DevOps</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">CI/CD</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Docker</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Kubernetes</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="ai-and-deep-learning"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">AI & Deep Learning</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">TensorFlow</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">PyTorch</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Neural Nets</span>
-                    </div>
-                </div>
-
-                <div
-                    class="course-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" data-course="game-dev"><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3">Game Development</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Unity</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">Unreal</span>
-                        <span class="px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300">C#</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Generator Section -->
-    <section id="generator"
-        class="py-24 px-6 bg-violet-50 dark:bg-slate-900">
-        <div class="max-w-5xl mx-auto">
-            <div
-                class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 sm:p-12 shadow-2xl">
-                <div class="text-center mb-12">
-                    <span
-                        class="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-violet-500 text-white shadow-md hover:shadow-lg transition-shadow duration-300 mb-6">
-                        Project Generator
-                    </span>
-                    <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Generate Your Project</h2>
-                    <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                        Get a customized project idea in seconds
+                    <h1 class="font-mono text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight tracking-tight text-ink dark:text-ink-dark">
+                        Stop staring at a blank project prompt.
+                    </h1>
+                    <p class="text-lg text-ink-soft dark:text-ink-soft-dark max-w-md leading-relaxed">
+                        Pick a course and a difficulty. Get a full project brief back —
+                        file structure, build steps, tools, and learning outcomes —
+                        generated by Gemini in under 20 seconds.
                     </p>
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+                        <span class="text-ink-soft dark:text-ink-soft-dark">14 courses supported, Python to game dev.</span>
+                        <a href="https://github.com/shawalkhan09/LaunchMate" target="_blank" rel="noopener noreferrer"
+                            class="text-accent dark:text-accent-dark hover:underline">Source on GitHub</a>
+                    </div>
+                    <a href="#how-it-works" class="inline-block text-sm text-ink-soft dark:text-ink-soft-dark hover:text-accent dark:hover:text-accent-dark underline underline-offset-4 decoration-hairline">
+                        See how it works
+                    </a>
                 </div>
 
-                <div class="space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+                <!-- Generator Card -->
+                <div class="bg-card dark:bg-card-dark border border-hairline dark:border-hairline-dark rounded-xl shadow-sm overflow-hidden">
+                    <div class="px-5 py-3 border-b border-hairline dark:border-hairline-dark flex items-center gap-2">
+                        <span class="font-mono text-accent dark:text-accent-dark text-sm">&gt;</span>
+                        <span class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark">generator.run</span>
+                    </div>
+                    <div class="p-6 space-y-5">
                         <div class="space-y-2">
-                            <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Select
-                                Course</label>
+                            <label class="font-mono text-xs text-ink-soft dark:text-ink-soft-dark">course</label>
                             <select id="courseSelect"
-                                class="w-full h-12 px-4 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-white shadow-sm hover:border-violet-400 dark:hover:border-violet-500 focus:border-violet-500 dark:focus:border-violet-400 focus:outline-none transition-colors duration-200">
+                                class="w-full h-12 px-4 rounded-lg border border-hairline dark:border-hairline-dark bg-paper dark:bg-paper-dark text-ink dark:text-ink-dark focus:border-accent dark:focus:border-accent-dark focus:outline-none transition-colors duration-200">
                                 <option value="" disabled selected>Choose your course</option>
                                 <option value="python">Python</option>
                                 <option value="oop">OOP</option>
@@ -532,9 +193,9 @@
                         </div>
 
                         <div class="space-y-2">
-                            <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Select Level</label>
+                            <label class="font-mono text-xs text-ink-soft dark:text-ink-soft-dark">difficulty</label>
                             <select id="difficultySelect"
-                                class="w-full h-12 px-4 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-white shadow-sm hover:border-violet-400 dark:hover:border-violet-500 focus:border-violet-500 dark:focus:border-violet-400 focus:outline-none transition-colors duration-200">
+                                class="w-full h-12 px-4 rounded-lg border border-hairline dark:border-hairline-dark bg-paper dark:bg-paper-dark text-ink dark:text-ink-dark focus:border-accent dark:focus:border-accent-dark focus:outline-none transition-colors duration-200">
                                 <option value="" disabled selected>Choose difficulty</option>
                                 <option value="beginner">Beginner</option>
                                 <option value="intermediate">Intermediate</option>
@@ -542,274 +203,319 @@
                             </select>
                         </div>
 
-                        <!-- Generator Button (new) -->
                         <button id="generateBtn"
-                            class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
-                            <span class="btn-text">Generate Project</span>
-                            </button>
+                            class="w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium shadow-sm hover:shadow transition-all duration-200 bg-accent hover:bg-accent-dark text-white focus:outline-none focus:ring-2 focus:ring-accent/50 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span class="btn-text">Generate project</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Loader -->
+            <div id="projectLoader"
+                class="hidden mt-12 bg-card dark:bg-card-dark border border-hairline dark:border-hairline-dark rounded-xl p-8 shadow-sm slide-in">
+                <div class="space-y-8">
+                    <div class="flex flex-col items-center space-y-6">
+                        <div class="relative">
+                            <div class="w-20 h-20 border-4 border-hairline dark:border-hairline-dark rounded-full loader-spin">
+                                <div class="absolute top-0 left-0 w-full h-full border-4 border-transparent border-t-accent dark:border-t-accent-dark rounded-full loader-spin"></div>
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="font-mono text-accent dark:text-accent-dark loader-pulse">&lt;/&gt;</span>
+                            </div>
+                        </div>
+
+                        <div class="text-center space-y-2">
+                            <h3 class="font-mono text-xl font-semibold brand-text">Generating your project...</h3>
+                            <p class="text-ink-soft dark:text-ink-soft-dark">This usually takes 15 to 20 seconds.</p>
+                        </div>
                     </div>
 
-                    <!-- Project Loader -->
-                    <div id="projectLoader"
-                        class="hidden bg-violet-50 dark:bg-slate-800/50 border border-violet-200 dark:border-slate-600 rounded-2xl p-8 shadow-lg slide-in">
-                        <div class="space-y-8">
-                            <!-- Main Loading Animation -->
-                            <div class="flex flex-col items-center space-y-6">
-                                <div class="relative">
-                                    <!-- Outer rotating ring -->
-                                    <div
-                                        class="w-24 h-24 border-4 border-violet-200 dark:border-slate-600 rounded-full loader-spin">
-                                        <div
-                                            class="absolute top-0 left-0 w-full h-full border-4 border-transparent border-t-violet-600 dark:border-t-violet-400 rounded-full loader-spin">
-                                        </div>
-                                    </div>
-
-                                    <!-- Inner pulsing icon -->
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <div
-                                            class="w-12 h-12 bg-violet-500 rounded-full flex items-center justify-center loader-pulse">
-                                            </div>
-                                    </div>
-
-                                    <!-- Floating particles -->
-                                    <div
-                                        class="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full animate-bounce">
-                                    </div>
-                                    <div class="absolute -bottom-2 -left-2 w-2 h-2 bg-emerald-400 rounded-full animate-bounce"
-                                        style="animation-delay: 0.3s;"></div>
-                                    <div class="absolute top-1/2 -left-4 w-2 h-2 bg-emerald-400 rounded-full animate-bounce"
-                                        style="animation-delay: 0.7s;"></div>
-                                </div>
-
-                                <div class="text-center space-y-2">
-                                    <h3 class="text-2xl font-bold brand-text">AI is crafting your project...</h3>
-                                    <p class="text-slate-600 dark:text-slate-400">
-                                        This might take a few moments while we create something amazing
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Progress Bar -->
-                            <div class="space-y-3">
-                                <div class="flex justify-between text-sm text-slate-600 dark:text-slate-400">
-                                    <span>Progress</span>
-                                    <span id="progressPercent">0%</span>
-                                </div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
-                                    <div id="progressBar"
-                                        class="h-full bg-violet-500 rounded-full transition-all duration-300 ease-out relative"
-                                        style="width: 0%">
-                                        <div class="absolute inset-0 bg-white/20 loader-pulse"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Step Indicators -->
-                            <div class="space-y-4" id="loadingSteps">
-                                <div
-                                    class="loading-step flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 transition-all duration-300">
-                                    <div
-                                        class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-300">
-                                        </div>
-                                    <div class="flex-1">
-                                        <p
-                                            class="font-medium text-slate-600 dark:text-slate-400 transition-colors duration-300">
-                                            Analyzing your requirements...</p>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="loading-step flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 transition-all duration-300">
-                                    <div
-                                        class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-300">
-                                        </div>
-                                    <div class="flex-1">
-                                        <p
-                                            class="font-medium text-slate-600 dark:text-slate-400 transition-colors duration-300">
-                                            Generating project ideas...</p>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="loading-step flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 transition-all duration-300">
-                                    <div
-                                        class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-300">
-                                        </div>
-                                    <div class="flex-1">
-                                        <p
-                                            class="font-medium text-slate-600 dark:text-slate-400 transition-colors duration-300">
-                                            Creating project structure...</p>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="loading-step flex items-center gap-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 transition-all duration-300">
-                                    <div
-                                        class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 transition-all duration-300">
-                                        </div>
-                                    <div class="flex-1">
-                                        <p
-                                            class="font-medium text-slate-600 dark:text-slate-400 transition-colors duration-300">
-                                            Finalizing your blueprint...</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Fun Facts -->
-                            <div
-                                class="bg-violet-50 dark:bg-violet-900/20 rounded-lg p-4 border border-violet-200 dark:border-violet-800">
-                                <div class="flex items-start gap-3">
-                                    <div>
-                                        <h4 class="font-semibold text-violet-700 dark:text-violet-300 mb-1">Did you
-                                            know?</h4>
-                                        <p class="text-sm text-violet-600 dark:text-violet-400">
-                                            Our AI analyzes over 1000+ successful projects to create the perfect
-                                            blueprint tailored to your skill level and learning goals.
-                                        </p>
-                                    </div>
-                                </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm text-ink-soft dark:text-ink-soft-dark">
+                            <span>Progress</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div class="w-full bg-hairline dark:bg-hairline-dark rounded-full h-2 overflow-hidden">
+                            <div id="progressBar"
+                                class="h-full bg-accent dark:bg-accent-dark rounded-full transition-all duration-300 ease-out relative"
+                                style="width: 0%">
+                                <div class="absolute inset-0 bg-white/20 loader-pulse"></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project Result -->
-<div id="result"
-    class="hidden bg-violet-50 dark:bg-slate-800/50 border border-violet-200 dark:border-slate-600 rounded-2xl p-4 sm:p-8 shadow-lg slide-in">
-    <div class="space-y-8">
+                    <div class="space-y-3" id="loadingSteps">
+                        <div class="loading-step flex items-center gap-4 p-3 rounded-lg bg-paper dark:bg-paper-dark transition-all duration-300">
+                            <div class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-hairline dark:bg-hairline-dark text-ink-soft dark:text-ink-soft-dark transition-all duration-300"></div>
+                            <div class="flex-1">
+                                <p class="font-medium text-ink-soft dark:text-ink-soft-dark transition-colors duration-300">Analyzing your requirements...</p>
+                            </div>
+                        </div>
 
-        <div>
-            <h3 id="title" class="text-2xl sm:text-3xl font-bold brand-text mb-4"></h3>
-            <p id="description" class="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed"></p>
-        </div>
+                        <div class="loading-step flex items-center gap-4 p-3 rounded-lg bg-paper dark:bg-paper-dark transition-all duration-300">
+                            <div class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-hairline dark:bg-hairline-dark text-ink-soft dark:text-ink-soft-dark transition-all duration-300"></div>
+                            <div class="flex-1">
+                                <p class="font-medium text-ink-soft dark:text-ink-soft-dark transition-colors duration-300">Generating project ideas...</p>
+                            </div>
+                        </div>
 
-        <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
-            <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                Tools & Technologies
-            </h4>
-            <div id="tools" class="flex flex-wrap gap-2 overflow-x-auto"></div>
-        </div>
+                        <div class="loading-step flex items-center gap-4 p-3 rounded-lg bg-paper dark:bg-paper-dark transition-all duration-300">
+                            <div class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-hairline dark:bg-hairline-dark text-ink-soft dark:text-ink-soft-dark transition-all duration-300"></div>
+                            <div class="flex-1">
+                                <p class="font-medium text-ink-soft dark:text-ink-soft-dark transition-colors duration-300">Creating project structure...</p>
+                            </div>
+                        </div>
 
-        <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
-            <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                File Structure
-            </h4>
-            <pre id="fileStructure"
-                class="bg-slate-100 dark:bg-slate-900 p-4 rounded-lg overflow-x-auto text-sm font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700"></pre>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
-                <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                    Learning Outcomes
-                </h4>
-                <ul id="learningOutcomes" class="space-y-2 text-base"></ul>
+                        <div class="loading-step flex items-center gap-4 p-3 rounded-lg bg-paper dark:bg-paper-dark transition-all duration-300">
+                            <div class="step-icon w-10 h-10 rounded-full flex items-center justify-center bg-hairline dark:bg-hairline-dark text-ink-soft dark:text-ink-soft-dark transition-all duration-300"></div>
+                            <div class="flex-1">
+                                <p class="font-medium text-ink-soft dark:text-ink-soft-dark transition-colors duration-300">Finalizing your blueprint...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
-                <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                    Build Steps
-                </h4>
-                <ol id="buildSteps" class="space-y-2 text-base"></ol>
+            <!-- Project Result -->
+            <div id="result"
+                class="hidden mt-12 bg-card dark:bg-card-dark border border-hairline dark:border-hairline-dark rounded-xl p-4 sm:p-8 shadow-sm slide-in">
+                <div class="space-y-8">
+
+                    <div>
+                        <h3 id="title" class="font-mono text-2xl sm:text-3xl font-semibold brand-text mb-4"></h3>
+                        <p id="description" class="text-base sm:text-lg text-ink-soft dark:text-ink-soft-dark leading-relaxed"></p>
+                    </div>
+
+                    <div class="bg-paper dark:bg-paper-dark rounded-lg p-4 sm:p-6 border border-hairline dark:border-hairline-dark">
+                        <h4 class="font-mono text-lg font-semibold text-ink dark:text-ink-dark mb-4">Tools & Technologies</h4>
+                        <div id="tools" class="flex flex-wrap gap-2 overflow-x-auto"></div>
+                    </div>
+
+                    <div class="bg-paper dark:bg-paper-dark rounded-lg p-4 sm:p-6 border border-hairline dark:border-hairline-dark">
+                        <h4 class="font-mono text-lg font-semibold text-ink dark:text-ink-dark mb-4">File Structure</h4>
+                        <pre id="fileStructure"
+                            class="bg-card dark:bg-card-dark p-4 rounded-lg overflow-x-auto text-sm font-mono text-ink dark:text-ink-dark border border-hairline dark:border-hairline-dark"></pre>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-paper dark:bg-paper-dark rounded-lg p-4 sm:p-6 border border-hairline dark:border-hairline-dark">
+                            <h4 class="font-mono text-lg font-semibold text-ink dark:text-ink-dark mb-4">Learning Outcomes</h4>
+                            <ul id="learningOutcomes" class="space-y-2 text-base"></ul>
+                        </div>
+
+                        <div class="bg-paper dark:bg-paper-dark rounded-lg p-4 sm:p-6 border border-hairline dark:border-hairline-dark">
+                            <h4 class="font-mono text-lg font-semibold text-ink dark:text-ink-dark mb-4">Build Steps</h4>
+                            <ol id="buildSteps" class="space-y-2 text-base"></ol>
+                        </div>
+                    </div>
+
+                    <div class="bg-paper dark:bg-paper-dark rounded-lg p-4 sm:p-6 border border-hairline dark:border-hairline-dark">
+                        <h4 class="font-mono text-lg font-semibold text-ink dark:text-ink-dark mb-4">External Resources</h4>
+                        <div id="apiLinks" class="space-y-2 text-base break-words overflow-x-auto"></div>
+                    </div>
+
+                    <div class="bg-paper dark:bg-paper-dark rounded-lg p-4 sm:p-6 border border-hairline dark:border-hairline-dark">
+                        <h4 class="font-mono text-lg font-semibold text-ink dark:text-ink-dark mb-4">Estimated Time</h4>
+                        <span id="estimatedTime"
+                            class="inline-block px-4 py-2 rounded-full text-base font-medium bg-accent-soft dark:bg-accent-soft-dark text-accent dark:text-accent-dark"></span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row justify-end gap-4">
+                        <button id="copyBtn"
+                            class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium shadow-sm hover:shadow transition-all duration-200 bg-accent hover:bg-accent-dark text-white focus:outline-none focus:ring-2 focus:ring-accent/50">
+                            Copy to Clipboard
+                        </button>
+
+                        <button id="downloadBtn"
+                            class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium shadow-sm hover:shadow transition-all duration-200 bg-accent hover:bg-accent-dark text-white focus:outline-none focus:ring-2 focus:ring-accent/50">
+                            Download Project
+                        </button>
+
+                        <button id="save-project-btn" data-logged-in="{{ 'true' if session.get('email') else 'false' }}"
+                            {% if not session.get('email') %}title="Sign in to save projects"{% endif %}
+                            class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium shadow-sm transition-all duration-200 text-white focus:outline-none focus:ring-2 focus:ring-accent/50 {{ 'bg-accent hover:bg-accent-dark hover:shadow' if session.get('email') else 'bg-ink-soft dark:bg-ink-soft-dark cursor-not-allowed' }}">
+                            {{ 'Save Project' if session.get('email') else 'Sign in to save' }}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
-            <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                External Resources
-            </h4>
-            <div id="apiLinks" class="space-y-2 text-base break-words overflow-x-auto"></div>
+    <!-- How It Works Section (horizontal timeline) -->
+    <section id="how-it-works" class="py-24 px-6 border-t border-hairline dark:border-hairline-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="font-mono text-accent dark:text-accent-dark">&lt;/&gt;</span>
+                    <span class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark">how it works</span>
+                </div>
+                <h2 class="font-mono text-3xl sm:text-4xl font-semibold tracking-tight text-ink dark:text-ink-dark max-w-xl">
+                    Four steps from idea to blueprint
+                </h2>
+            </div>
+
+            <div class="relative grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
+                <div class="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-hairline dark:bg-hairline-dark"></div>
+
+                <div class="relative space-y-3">
+                    <div class="relative z-10 w-12 h-12 rounded-full bg-paper dark:bg-paper-dark border-2 border-accent dark:border-accent-dark flex items-center justify-center font-mono font-semibold text-accent dark:text-accent-dark">1</div>
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark">Choose course & level</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed text-sm">Select your course and a difficulty that matches your skills.</p>
+                </div>
+
+                <div class="relative space-y-3">
+                    <div class="relative z-10 w-12 h-12 rounded-full bg-paper dark:bg-paper-dark border-2 border-accent dark:border-accent-dark flex items-center justify-center font-mono font-semibold text-accent dark:text-accent-dark">2</div>
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark">Generate</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed text-sm">Gemini writes a tailored project idea in under 20 seconds.</p>
+                </div>
+
+                <div class="relative space-y-3">
+                    <div class="relative z-10 w-12 h-12 rounded-full bg-paper dark:bg-paper-dark border-2 border-accent dark:border-accent-dark flex items-center justify-center font-mono font-semibold text-accent dark:text-accent-dark">3</div>
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark">Get the blueprint</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed text-sm">File structure, build steps, tools, and learning outcomes.</p>
+                </div>
+
+                <div class="relative space-y-3">
+                    <div class="relative z-10 w-12 h-12 rounded-full bg-paper dark:bg-paper-dark border-2 border-accent dark:border-accent-dark flex items-center justify-center font-mono font-semibold text-accent dark:text-accent-dark">4</div>
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark">Start building</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed text-sm">Copy, download, or save it to your profile and start coding.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="bg-white dark:bg-slate-800 rounded-xl p-4 sm:p-6 shadow-sm">
-            <h4 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white mb-4">Estimated Time</h4>
-            <span id="estimatedTime"
-                class="inline-block px-4 py-2 rounded-full text-base font-semibold bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300"></span>
+    <!-- Features Section (editorial list, not cards) -->
+    <section id="features" class="py-24 px-6 bg-card dark:bg-card-dark border-t border-hairline dark:border-hairline-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="font-mono text-accent dark:text-accent-dark">&lt;/&gt;</span>
+                    <span class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark">features</span>
+                </div>
+                <h2 class="font-mono text-3xl sm:text-4xl font-semibold tracking-tight text-ink dark:text-ink-dark max-w-xl">
+                    Six things the generator gives you, every run
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                <div class="pt-6 border-t border-hairline dark:border-hairline-dark">
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark mb-2">Course-matched scope</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed">Every idea is scoped to your specific course and skill level, not a generic "build a to-do app" suggestion.</p>
+                </div>
+
+                <div class="pt-6 border-t border-hairline dark:border-hairline-dark">
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark mb-2">Full project blueprint</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed">File structure, tools, and a numbered build order, so you know exactly what to open first.</p>
+                </div>
+
+                <div class="pt-6 border-t border-hairline dark:border-hairline-dark">
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark mb-2">Named learning outcomes</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed">Each project states the concepts it's meant to reinforce, useful for course reports and CVs alike.</p>
+                </div>
+
+                <div class="pt-6 border-t border-hairline dark:border-hairline-dark">
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark mb-2">Copy, download, or save</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed">Export as Markdown with one click, or save it to your profile to come back to later.</p>
+                </div>
+
+                <div class="pt-6 border-t border-hairline dark:border-hairline-dark">
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark mb-2">Real external resources</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed">Linked docs and APIs relevant to the project, so you're not starting from a blank search bar.</p>
+                </div>
+
+                <div class="pt-6 border-t border-hairline dark:border-hairline-dark">
+                    <h3 class="font-mono font-semibold text-ink dark:text-ink-dark mb-2">Regenerate freely</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark leading-relaxed">Don't like the first idea? Run it again for a different take on the same course and level.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="flex flex-col sm:flex-row justify-end gap-4">
-            <!-- Copy Button -->
-            <button id="copyBtn"
-                class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50">
-                Copy to Clipboard
-            </button>
+    <!-- Courses Section (grouped tag grid) -->
+    <section id="courses" class="py-24 px-6 border-t border-hairline dark:border-hairline-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="font-mono text-accent dark:text-accent-dark">&lt;/&gt;</span>
+                    <span class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark">courses</span>
+                </div>
+                <h2 class="font-mono text-3xl sm:text-4xl font-semibold tracking-tight text-ink dark:text-ink-dark max-w-xl">
+                    14 courses, Python to deep learning
+                </h2>
+                <p class="text-ink-soft dark:text-ink-soft-dark mt-3 max-w-lg">Click any course to jump straight to the generator with it selected.</p>
+            </div>
 
-            <!-- Download Button -->
-            <button id="downloadBtn"
-                class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50">
-                Download Project
-            </button>
+            <div class="space-y-10">
+                <div>
+                    <h3 class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark mb-3">foundations</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="python">Python</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="oop">OOP</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="dbms">DBMS</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="dsa">Data Structures & Algorithms</div>
+                    </div>
+                </div>
 
-            <!-- Save Button -->
-            <button id="save-project-btn" data-logged-in="{{ 'true' if session.get('email') else 'false' }}"
-                {% if not session.get('email') %}title="Sign in to save projects"{% endif %}
-                class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg transition-all duration-300 gap-2 text-white focus:outline-none focus:ring-2 focus:ring-violet-500/50 {{ 'bg-violet-500 hover:bg-violet-600 hover:shadow-xl hover:scale-[1.02] active:scale-95' if session.get('email') else 'bg-slate-400 dark:bg-slate-600 cursor-not-allowed' }}">
-                {{ 'Save Project' if session.get('email') else 'Sign in to save' }}
-            </button>
-        </div>
-    </div>
-</div>
+                <div>
+                    <h3 class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark mb-3">software & cloud</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="software-engineering">Software Engineering</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="web-dev">Web Development</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="mobile-dev">Mobile Development</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="cloud-computing">Cloud Computing</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="devops">DevOps</div>
+                    </div>
+                </div>
 
+                <div>
+                    <h3 class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark mb-3">data & ai</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="machine-learning">Machine Learning</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="data-science">Data Science</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="ai-and-deep-learning">AI & Deep Learning</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark mb-3">security & games</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="cybersecurity">Cybersecurity</div>
+                        <div class="course-card cursor-pointer rounded-full border border-hairline dark:border-hairline-dark bg-card dark:bg-card-dark px-4 py-2 font-mono text-sm text-ink dark:text-ink-dark hover:border-accent hover:text-accent dark:hover:border-accent-dark dark:hover:text-accent-dark transition-colors duration-200" data-course="game-dev">Game Development</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Roadmap Section -->
-    <section id="roadmap" class="py-24 px-6">
+    <section id="roadmap" class="py-24 px-6 border-t border-hairline dark:border-hairline-dark">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-20">
-                <span
-                    class="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-violet-500 text-white shadow-md hover:shadow-lg transition-shadow duration-300 mb-6">
-                    Future Plans
-                </span>
-                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Development Roadmap</h2>
-                <p class="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                    Exciting features coming to LaunchMate
-                </p>
+            <div class="mb-16">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="font-mono text-accent dark:text-accent-dark">&lt;/&gt;</span>
+                    <span class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark">roadmap</span>
+                </div>
+                <h2 class="font-mono text-3xl sm:text-4xl font-semibold tracking-tight text-ink dark:text-ink-dark">
+                    What's next for LaunchMate
+                </h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-4 flex items-center gap-3">
-                        In Development
-                    </h3>
-                    <p class="text-slate-600 dark:text-slate-300 italic">No active development. Current version is stable.</p>
-                    <!-- <ul class="space-y-4 text-slate-700 dark:text-slate-300"> -->
-                        <!-- <li class="flex items-start gap-3">
-                            <span>User Profiles & Project History</span>
-                        </li> -->
-                        <!-- <li class="flex items-start gap-3">
-                            <span>GitHub Integration & Auto-Setup</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span>Project Rating & Feedback System</span>
-                        </li>
-                    </ul> -->
+                <div class="border border-hairline dark:border-hairline-dark rounded-xl p-8">
+                    <h3 class="font-mono text-lg font-semibold text-ink dark:text-ink-dark mb-4">In development</h3>
+                    <p class="text-ink-soft dark:text-ink-soft-dark italic">No active development. Current version is stable.</p>
                 </div>
 
-                <div
-                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                    <h3 class="text-2xl font-bold text-violet-600 dark:text-violet-400 mb-4 flex items-center gap-3">
-                        Coming Soon
-                    </h3>
-                    <ul class="space-y-4 text-slate-700 dark:text-slate-300">
-                        
-                        <li class="flex items-start gap-3">
-                            <span>Project Template Export (Boilerplate Code)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span>AI Mentor (v2) - Code Assistance</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span>GitHub Integration & Auto-Setup</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span>Project Rating & Feedback System</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span>Community Feedback & Collaboration</span>
-                        </li>
+                <div class="border border-hairline dark:border-hairline-dark rounded-xl p-8">
+                    <h3 class="font-mono text-lg font-semibold text-ink dark:text-ink-dark mb-4">Coming soon</h3>
+                    <ul class="space-y-3 text-ink-soft dark:text-ink-soft-dark">
+                        <li class="flex items-start gap-3"><span class="text-accent dark:text-accent-dark">–</span> Project template export (boilerplate code)</li>
+                        <li class="flex items-start gap-3"><span class="text-accent dark:text-accent-dark">–</span> AI mentor (v2) — code assistance</li>
+                        <li class="flex items-start gap-3"><span class="text-accent dark:text-accent-dark">–</span> GitHub integration & auto-setup</li>
+                        <li class="flex items-start gap-3"><span class="text-accent dark:text-accent-dark">–</span> Project rating & feedback system</li>
+                        <li class="flex items-start gap-3"><span class="text-accent dark:text-accent-dark">–</span> Community feedback & collaboration</li>
                     </ul>
                 </div>
             </div>
@@ -817,72 +523,73 @@
     </section>
 
     <!-- About Section -->
-    <section id="about"
-        class="py-24 px-6 bg-slate-50 dark:bg-slate-900/40">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <span
-                    class="inline-block px-4 py-1 rounded-full text-sm font-semibold bg-violet-500 text-white shadow-md hover:shadow-lg transition-shadow duration-300 mb-6">
-                    Our Story
-                </span>
-                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">About LaunchMate</h2>
+    <section id="about" class="py-24 px-6 bg-card dark:bg-card-dark border-t border-hairline dark:border-hairline-dark">
+        <div class="max-w-3xl mx-auto">
+            <div class="mb-12">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="font-mono text-accent dark:text-accent-dark">&lt;/&gt;</span>
+                    <span class="font-mono text-sm text-ink-soft dark:text-ink-soft-dark">about</span>
+                </div>
+                <h2 class="font-mono text-3xl sm:text-4xl font-semibold tracking-tight text-ink dark:text-ink-dark">
+                    Built by a student, for students
+                </h2>
             </div>
 
-            <div class="space-y-8 text-center">
-                <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Born from the frustration of endless project ideation and information overload, LaunchMate is built
-                    by student, for students. We understand the challenges of finding the right project that balances
-                    learning with practical implementation.
+            <div class="space-y-6">
+                <p class="text-lg text-ink-soft dark:text-ink-soft-dark leading-relaxed">
+                    LaunchMate started from the same problem every CS student runs into: an open assignment brief
+                    and no idea what to build. It exists to turn "pick a project" from a research task into a
+                    ten-second decision.
                 </p>
-                <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Our AI-powered platform helps you break through idea blocks and information overload, providing
-                    structured, educational project ideas that align perfectly with your learning journey.
+                <p class="text-lg text-ink-soft dark:text-ink-soft-dark leading-relaxed">
+                    Every generated project is scoped to a real course and skill level, with a blueprint detailed
+                    enough to start coding immediately instead of planning for another hour.
                 </p>
-                <div class="pt-8">
+                <div class="pt-4">
                     <a href="#generator"
-                        class="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 gap-2 bg-violet-500 hover:bg-violet-600 text-white hover:scale-[1.02] active:scale-95 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:opacity-50 disabled:cursor-not-allowed">
-                        Start Your Project Now
-                        </a>
+                        class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium shadow-sm hover:shadow transition-all duration-200 bg-accent hover:bg-accent-dark text-white">
+                        Generate your first project
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 dark:bg-slate-950 text-white py-16 px-6 transition-colors duration-300">
+    <footer class="bg-ink text-paper py-16 px-6 transition-colors duration-300">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="space-y-6">
-                    <div class="flex items-center gap-3">
-                        <span class="text-2xl font-bold">LaunchMate</span>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="font-mono text-accent-dark">&lt;/&gt;</span>
+                        <span class="font-mono text-lg font-semibold">LaunchMate</span>
                     </div>
-                    <p class="text-slate-400 dark:text-slate-500 leading-relaxed">
+                    <p class="text-ink-soft-dark leading-relaxed">
                         AI-powered project generator for students and developers to accelerate learning and portfolio
                         building.
                     </p>
                 </div>
 
-                <div class="space-y-6">
-                    <h3 class="text-xl font-bold">Connect With Us</h3>
+                <div class="space-y-4">
+                    <h3 class="font-mono text-lg font-semibold">Connect With Us</h3>
                     <div class="flex flex-col gap-2">
                         <a href="https://github.com/shawalkhan09/LaunchMate" target="_blank" rel="noopener noreferrer"
-                            class="text-slate-400 dark:text-slate-500 hover:text-white transition-colors duration-200">
+                            class="text-ink-soft-dark hover:text-accent-dark transition-colors duration-200">
                             GitHub
                         </a>
                     </div>
                 </div>
 
-                <div class="space-y-6">
-                    <h3 class="text-xl font-bold">Contact</h3>
+                <div class="space-y-4">
+                    <h3 class="font-mono text-lg font-semibold">Contact</h3>
                     <a href="mailto:shawalkt7042@gmail.com"
-                        class="text-slate-400 dark:text-slate-500 hover:text-white transition-colors duration-200">
+                        class="text-ink-soft-dark hover:text-accent-dark transition-colors duration-200">
                         shawalkt7042@gmail.com
                     </a>
                 </div>
             </div>
 
-            <div
-                class="border-t border-slate-800 dark:border-slate-900 mt-12 pt-8 text-center text-slate-400 dark:text-slate-500">
+            <div class="border-t border-hairline-dark mt-12 pt-8 text-center text-ink-soft-dark font-mono text-sm">
                 <p>© 2024 LaunchMate. All rights reserved.</p>
             </div>
         </div>

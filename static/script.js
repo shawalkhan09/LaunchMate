@@ -129,33 +129,33 @@ document.addEventListener('DOMContentLoaded', function () {
         stepIcon.className = 'step-icon w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300';
 
         if (isActive) {
-            stepElement.classList.add('bg-violet-100', 'dark:bg-violet-900/30', 'scale-105');
-            stepIcon.classList.add('bg-violet-500', 'text-white', 'animate-pulse-slow');
-            stepText.classList.add('text-violet-700', 'dark:text-violet-300');
+            stepElement.classList.add('bg-accent-soft', 'dark:bg-accent-soft-dark', 'scale-105');
+            stepIcon.classList.add('bg-accent', 'text-white', 'animate-pulse-slow');
+            stepText.classList.add('text-accent', 'dark:text-accent-dark');
 
             // Add bouncing dots using the new animation
             if (!stepElement.querySelector('.bouncing-dots')) {
                 const dots = document.createElement('div');
                 dots.className = 'bouncing-dots flex space-x-1';
                 dots.innerHTML = `
-                    <div class="w-2 h-2 bg-violet-500 rounded-full animate-bounce-slow"></div>
-                    <div class="w-2 h-2 bg-violet-500 rounded-full animate-bounce-slow" style="animation-delay: 0.1s;"></div>
-                    <div class="w-2 h-2 bg-violet-500 rounded-full animate-bounce-slow" style="animation-delay: 0.2s;"></div>
+                    <div class="w-2 h-2 bg-accent rounded-full animate-bounce-slow"></div>
+                    <div class="w-2 h-2 bg-accent rounded-full animate-bounce-slow" style="animation-delay: 0.1s;"></div>
+                    <div class="w-2 h-2 bg-accent rounded-full animate-bounce-slow" style="animation-delay: 0.2s;"></div>
                 `;
                 stepElement.appendChild(dots);
             }
         } else if (isCompleted) {
-            stepElement.classList.add('bg-emerald-50', 'dark:bg-emerald-900/20');
-            stepIcon.classList.add('bg-emerald-500', 'text-white');
-            stepText.classList.add('text-emerald-700', 'dark:text-emerald-300');
+            stepElement.classList.add('bg-accent-soft', 'dark:bg-accent-soft-dark');
+            stepIcon.classList.add('bg-accent', 'text-white');
+            stepText.classList.add('text-accent', 'dark:text-accent-dark');
 
             // Remove bouncing dots
             const dots = stepElement.querySelector('.bouncing-dots');
             if (dots) dots.remove();
         } else {
-            stepElement.classList.add('bg-slate-50', 'dark:bg-slate-800/50');
-            stepIcon.classList.add('bg-slate-300', 'dark:bg-slate-600', 'text-slate-500', 'dark:text-slate-400');
-            stepText.classList.add('text-slate-600', 'dark:text-slate-400');
+            stepElement.classList.add('bg-paper', 'dark:bg-paper-dark');
+            stepIcon.classList.add('bg-hairline', 'dark:bg-hairline-dark', 'text-ink-soft', 'dark:text-ink-soft-dark');
+            stepText.classList.add('text-ink-soft', 'dark:text-ink-soft-dark');
 
             // Remove bouncing dots
             const dots = stepElement.querySelector('.bouncing-dots');
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (Array.isArray(data.tools)) {
             data.tools.forEach(tool => {
                 const span = document.createElement('span');
-                span.className = 'px-3 py-1 rounded-full text-sm font-medium bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300';
+                span.className = 'px-3 py-1 rounded-full text-sm font-medium bg-accent-soft dark:bg-accent-soft-dark text-accent dark:text-accent-dark';
                 span.textContent = tool;
                 elements.tools.appendChild(span);
             });
@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 a.href = url;
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
-                a.className = 'text-primary hover:text-primary-light transition-all duration-300 hover:translate-x-1 inline-block';
+                a.className = 'text-accent hover:text-accent-dark transition-all duration-300 hover:translate-x-1 inline-block';
                 a.appendChild(document.createTextNode(link.name || link));
 
                 li.appendChild(a);
@@ -451,7 +451,7 @@ This is an AI-generated project suggestion from LaunchMate. Use it as inspiratio
             ${type === 'success' ? 'bg-emerald-50 border-emerald-200 text-emerald-800 dark:bg-emerald-900/20 dark:border-emerald-800 dark:text-emerald-200' :
                 type === 'error' ? 'bg-red-50 border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-200' :
                     type === 'warning' ? 'bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-200' :
-                        'bg-violet-50 border-violet-200 text-violet-800 dark:bg-violet-900/20 dark:border-violet-800 dark:text-violet-200' // default/info
+                        'bg-accent-soft border-accent text-accent dark:bg-accent-soft-dark dark:border-accent-dark dark:text-accent-dark' // default/info
             }
             animate-[toastIn_0.3s_ease-out]`;
 
