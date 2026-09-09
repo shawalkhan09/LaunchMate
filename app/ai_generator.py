@@ -11,8 +11,10 @@ load_dotenv()
 GEMINI_MODEL = "gemini-3.5-flash"
 GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 
-# Load fallback project ideas from file
-with open('fallback_projects.json', 'r') as f:
+# Load fallback project ideas from file (absolute path: cwd isn't guaranteed
+# to be the project root under WSGI servers, unlike running server.py directly)
+_PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+with open(os.path.join(_PROJECT_ROOT, 'fallback_projects.json'), 'r') as f:
     fallback_projects = json.load(f)
 
 def get_fallback_project(course, difficulty):
